@@ -7,7 +7,8 @@ class Entity
 {
 public:
 	Entity();
-
+	Entity(std::string aName, int aSize[2], char aSprite);
+	
 	void setName(std::string aName);
 	std::string getName();
 
