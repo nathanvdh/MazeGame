@@ -1,2 +1,2 @@
 all:
-	g++ *.cpp -o all.exe
+	g++ *.cpp
