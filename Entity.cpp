@@ -28,6 +28,16 @@ char Entity::getSprite() {
 	return sprite;
 }
 
+void Entity::setSize(int aSize[2]) {
+	size[0] = aSize[0];
+	size[1] = aSize[1];
+}
+
+int* Entity::getSize() {
+	return size;
+}
+
+
 Entity::~Entity() {
-	
+
 }

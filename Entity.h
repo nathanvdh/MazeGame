@@ -14,6 +14,9 @@ public:
 
 	void setSprite(char aSprite);
 	char getSprite();
+
+	void setSize(int aSize[2]);
+	int* getSize();
 	
 	
 	~Entity();
