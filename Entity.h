@@ -12,11 +12,13 @@ public:
 	void setSprite(char aSprite);
 	char getSprite();
 	
+	void virtual touched();
 	
 	~Entity();
 
 private:
 	char sprite;
+	
 };
 
 #endif
