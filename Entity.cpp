@@ -17,6 +17,10 @@ char Entity::getSprite() {
 	return sprite;
 }
 
+void Entity::touched() {
+
+}
+
 Entity::~Entity() {
 
 }
