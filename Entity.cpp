@@ -2,6 +2,7 @@
 #include <string>
 
 Entity::Entity() {
+	sprite='?';
 
 }
 
