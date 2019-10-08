@@ -1,18 +1,23 @@
 #ifndef OBSTACLE_H
 #define OBSTACLE_H
 
+//Obstacle is an abstract class and cannot be instantiated
+
 #include "Entity.h"
 #include <string>
 class Obstacle : public Entity
 {
 public:
 
-	Obstacle();
-	Obstacle(char aSprite);
-	virtual void touched();
+	Obstacle(char aSprite, std::string aMessage);
 	~Obstacle();
-private:
+
+
+protected:
 	std::string message;
+	//potentially could have static messageArray - array of predefined obstacle messages
+	// then the constructor can have int messageNumber
+	//i.e. when you construct object just specify number and not whole string
 	
 };
 

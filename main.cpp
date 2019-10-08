@@ -1,15 +1,16 @@
 //FOR TESTING
-#include "Obstacle.h"
+//#include "Obstacle.h"
+#include "Wall.h"
 #include <string>
 #include <iostream>
 int main(void)
 {
-	Obstacle genOb = Obstacle('|');
-
-	std::cout << genOb.getSprite() <<"\n";
-	genOb.touched();
-	genOb.setSprite('-');
-	std::cout << genOb.getSprite() <<"\n";
+	Wall wall1 = Wall('|');
+	Wall wall2 = Wall('-');
+	std::cout << wall1.getSprite() << "\n";
+	wall1.touched();
+	std::cout << wall2.getSprite() << "\n";
+	wall2.touched();
 
 	return 0;
 }

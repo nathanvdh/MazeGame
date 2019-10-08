@@ -8,11 +8,11 @@ class Entity
 public:
 	Entity();
 	Entity(char aSprite);
-
+	
 	void setSprite(char aSprite);
 	char getSprite();
 	
-	void virtual touched();
+	void virtual touched()=0;
 	
 	~Entity();
 
@@ -21,4 +21,4 @@ private:
 	
 };
 
-#endif //OBSTACLE_H
+#endif //ENTITY_H
