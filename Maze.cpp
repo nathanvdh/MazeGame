@@ -23,7 +23,7 @@ Maze::Maze() {
 			"00000000000000000000"}
 }
 
-void setmap(char aMap[20,20]) {
+void setmap(Obstacle* aMap[20,20]) {
 	map = aMap;
 }
 
