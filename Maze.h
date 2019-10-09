@@ -6,11 +6,11 @@
 class Maze {
 public:
 	Maze();
-	void setmap(Obstacle* aMap[20,20]);
+	void setmap(Obstacle* aMap[5,5]);
 	~Maze();
 	
 private:
-	Obstacle* map[20,20];
+	Obstacle* map[5,5];
 };
 
 #endif //MAZE_H
