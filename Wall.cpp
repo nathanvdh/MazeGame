@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-Wall::Wall(char aSprite) : Obstacle(aSprite, "You hit a wall") {
+Wall::Wall() : Obstacle('#', "You hit a wall") {
 
 }
 

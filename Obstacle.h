@@ -5,6 +5,7 @@
 
 #include "Entity.h"
 #include <string>
+
 class Obstacle : public Entity
 {
 public:

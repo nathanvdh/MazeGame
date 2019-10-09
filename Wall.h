@@ -7,7 +7,7 @@ class Wall : public Obstacle
 {
 public:
 
-	Wall(char aSprite);
+	Wall();
 	virtual void touched();
 	~Wall();
 };
