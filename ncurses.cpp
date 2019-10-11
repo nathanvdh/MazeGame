@@ -12,6 +12,7 @@ bool playerMove(int inp, int *xPos, int *yPos) {
 				result= 1;
 				*yPos++;
 			}
+			break;
 		case DOWN:
 			if (map[*yPos-1][*xPos]=='#') {
 				result= 0;
@@ -19,6 +20,7 @@ bool playerMove(int inp, int *xPos, int *yPos) {
 				result= 1;
 				*yPos--;
 			}
+			break;
 		case LEFT:
 			if (map[*yPos][*xPos-1]=='#') {
 				result= 0;
@@ -26,6 +28,7 @@ bool playerMove(int inp, int *xPos, int *yPos) {
 				result= 1;
 				*xPos--;
 			}
+			break;
 		case RIGHT:
 			if (map[*yPos][*xPos+1]=='#') {
 				result= 0;
@@ -33,6 +36,17 @@ bool playerMove(int inp, int *xPos, int *yPos) {
 				result= 1;
 				*xPos++;
 			}
+			break;
+	}
+return result;
+}
+
+bool endZone(int inp, int *xPos, int *yPos) {
+	bool result = 0;
+	if (map[*yPos][*xPos]=='X') {
+		std::cout << "Congratulations, you win!" << std::endl;
+		result = 1;
+		inp = q;
 	}
 return result;
 }
