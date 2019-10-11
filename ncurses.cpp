@@ -1,5 +1,41 @@
 #include <curses.h>
 
+//Ensures character remains within the boundary
+bool inBounnds(int inp, int *xPos, int *yPos) {
+	bool result = 0;
+	switch (inp) {
+		case UP:
+			if (map[*yPos+1][*xPos]=='#') {
+				result= 0;
+			} else {
+				result= 1;
+				*yPos++;
+			}
+		case DOWN:
+			if (map[*yPos-1][*xPos]=='#') {
+				result= 0;
+			} else {
+				result= 1;
+				*yPos--;
+			}
+		case LEFT:
+			if (map[*yPos][*xPos-1]=='#') {
+				result= 0;
+			} else {
+				result= 1;
+				*xPos--;
+			}
+		case RIGHT:
+			if (map[*yPos][*xPos+1]=='#') {
+				result= 0;
+			} else {
+				result= 1;
+				*xPos++;
+			}
+	}
+return result;
+}
+
 int main(void)
 {
 	initscr(); //initialize screen
@@ -34,7 +70,8 @@ int main(void)
 	//initialisation of map dimensions
 	int MAPHEIGHT = 20, MAPWIDTH = 40;
 	//intialisation of position variables
-	int xPos =2, yPos=2;
+	int *xPos, *yPos;
+	*xPos=2, *yPos=2;
 	
 	//drawing of map and text ******* Not sure if it should be height or length used *******************
 	drawMap(map,MAPHEIGHT);
