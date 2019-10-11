@@ -12,8 +12,6 @@ public:
 	void setSprite(char aSprite);
 	char getSprite();
 	
-	void virtual touched()=0;
-	
 	~Entity();
 
 private:
