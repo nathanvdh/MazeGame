@@ -4,10 +4,10 @@ Person::Person() : Entity('X') {
 void Person::move(int aKey) {
 	switch (aKey) {
 		case KEY_UP:
-				yPos++;
+				yPos--;
 			break;
 		case KEY_DOWN:
-				yPos--;
+				yPos++;
 			break;
 		case KEY_LEFT:
 				xPos--;
