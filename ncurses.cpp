@@ -16,12 +16,16 @@ int main(void)
 
 	initcurses();
 	drawMap(map, 5);
+	printw("Hello World!");
 
 	while (inp !='q')
 	{
 		inp = getch();
+		vaddch(2,2,inp);
+		//inp = getch();
+		//mvaddch(2,3,inp);
 
-		mvaddch(2,2,inp);		
+		//refresh();		
 	}
 
 	endwin();
