@@ -1,7 +1,8 @@
 #include <curses.h>
 
-//Ensures character remains within the boundary
-bool inBounnds(int inp, int *xPos, int *yPos) {
+//Takes input, checks that player remains inside boundaries and moves player
+//Returns a 'true', if player's position is moved
+bool playerMove(int inp, int *xPos, int *yPos) {
 	bool result = 0;
 	switch (inp) {
 		case UP:
