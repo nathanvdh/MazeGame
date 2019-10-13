@@ -1,54 +1,58 @@
 #include <curses.h>
+#include <iostream>
+//#include <string>
 
 //Takes input, checks that player remains inside boundaries and moves player
 //Returns a 'true', if player's position is moved
-bool playerMove(int inp, int *xPos, int *yPos) {
+bool playerMove(int inp, int *xPos, int *yPos, char map[][40]) {
 	bool result = 0;
 	switch (inp) {
-		case UP:
-			if (map[*yPos+1][*xPos]=='#') {
-				result= 0;
-			} else {
+		case KEY_UP:
+			if (map[*yPos-1][*xPos]!='#') {
 				result= 1;
-				*yPos++;
+				*yPos=*yPos-1;
 			}
 			break;
-		case DOWN:
-			if (map[*yPos-1][*xPos]=='#') {
-				result= 0;
-			} else {
+		case KEY_DOWN:
+			if (map[*yPos+1][*xPos]!='#') {
 				result= 1;
-				*yPos--;
+				*yPos=*yPos+1;
 			}
 			break;
-		case LEFT:
-			if (map[*yPos][*xPos-1]=='#') {
-				result= 0;
-			} else {
+		case KEY_LEFT:
+			if (map[*yPos][*xPos-1]!='#') {
 				result= 1;
-				*xPos--;
+				*xPos=*xPos-1;
 			}
 			break;
-		case RIGHT:
-			if (map[*yPos][*xPos+1]=='#') {
-				result= 0;
-			} else {
+		case KEY_RIGHT:
+			if (map[*yPos][*xPos+1]!='#') {
 				result= 1;
-				*xPos++;
+				*xPos=*xPos+1;
 			}
 			break;
 	}
 return result;
 }
 
-bool endZone(int inp, int *xPos, int *yPos) {
+bool endZone(int *xPos, int *yPos, char map[][40], int MAPHEIGHT) {
 	bool result = 0;
 	if (map[*yPos][*xPos]=='X') {
-		std::cout << "Congratulations, you win!" << std::endl;
+		mvprintw(MAPHEIGHT+3,1,"Congrats you win, press any key to exit");
+		getch();
 		result = 1;
-		inp = q;
+		//*inp = 'q';
 	}
 return result;
+}
+
+void drawMap(char map[][40], int MAPWIDTH, int MAPHEIGHT) {
+	int row,column;
+  	for (row=0;row<MAPHEIGHT;row++ ){
+    	for (column=0;column<MAPWIDTH;column++) {
+      		mvaddch(row,column,map[row][column]);
+    	}
+  	}
 }
 
 int main(void)
@@ -61,48 +65,58 @@ int main(void)
 	int inp = '\0';
 	
 	//setting map boundaries
-	char map [40][20] = {	"########################################"
-				"#                                      #",
-				"#                                 X    #",
-				"#                                      #",
-				"#                                      #",
-				"#                                      #",
-				"#                                      #",
-				"#                                      #",
-				"#                                      #",
-				"#                                      #",
-				"#                                      #",
-				"#                                      #",
-				"#                                      #",
-				"#                                      #",
-				"#                                      #",
-				"#                                      #",
-				"#                                      #",
-				"#                                      #",
-				"#                                      #",
-				"########################################" };
+	char map [][40] = {	
+				'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#',
+				'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
+				'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','X',' ',' ',' ',' ',' ',' ',' ','#',
+				'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
+				'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
+				'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
+				'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
+				'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
+				'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
+				'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
+				'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
+				'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
+				'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
+				'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
+				'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
+				'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
+				'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
+				'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
+				'#',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' ','#',
+				'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#' };
 	
 	//initialisation of map dimensions
-	int MAPHEIGHT = 20, MAPWIDTH = 40;
+	const int MAPHEIGHT = 20, MAPWIDTH = 40;
 	//intialisation of position variables
-	int *xPos, *yPos;
-	*xPos=2, *yPos=2;
+	int xPos=2, yPos=2;
 	
 	//drawing of map and text ******* Not sure if it should be height or length used *******************
-	drawMap(map,MAPHEIGHT);
-	mvprintw(MAPHEIGHT,1,"Reach the end zone to complete the game");
+	drawMap(map,MAPWIDTH, MAPHEIGHT);
+	mvprintw(MAPHEIGHT,1,"Reach the end zone (X) to complete the game");
 	mvprintw(MAPHEIGHT+2,1,"Press q to quit game");
 	
 	//Puts cursor at starting position
 	move(yPos,xPos);
+	mvaddch(yPos,xPos,'@');
 	
 	while (inp !='q')
 	{
+		//mvprintw(MAPHEIGHT+3,1,"%d",xPos);
 		inp = getch();
+		mvaddch(yPos,xPos,' ');
+		if (!(playerMove(inp, &xPos, &yPos, map))) {
+			//mvprintw(MAPHEIGHT+3,1,"You didn't press an arrow key");
+		}
 
-		mvaddch(5,50,inp);
-		
-		//something to say, when the position is at X, force the input to be q and quit the game
+		mvaddch(yPos,xPos,'@');
+
+		if (endZone(&xPos, &yPos, map, MAPHEIGHT)) {
+			endwin();
+			return 0;
+		};
+
 	}
 
 	endwin();
