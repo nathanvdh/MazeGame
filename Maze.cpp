@@ -4,7 +4,7 @@ Maze::Maze() {
 
 }
 
-void setmap(Obstacle* aMap[5,5]) {
+void setmMap(Obstacle* aMap[5,5]) {
 	map = aMap;
 }
 

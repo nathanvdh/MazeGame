@@ -6,7 +6,8 @@
 class Maze {
 public:
 	Maze();
-	void setmap(Obstacle* aMap[5,5]);
+	void setMap(Obstacle* aMap[5,5]);
+	void drawMap(Obstacle* aMap[5,5]);
 	~Maze();
 	
 private:

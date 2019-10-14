@@ -3,15 +3,18 @@
 #include "Wall.h"
 #include "Finish.h"
 #include "Maze.h"
+#include "Person.h"
 #include <string>
 #include <iostream>
 int main(void)
 {
 	Wall *wall;
 	Finish *finish;
+	Person *person;
 	
 	wall = new Wall();
 	finish = new Finish();
+	person = new Person();
 
 	std::cout << wall->getSprite() << "\n";
 	wall->touched();

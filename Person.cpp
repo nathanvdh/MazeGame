@@ -1,4 +1,4 @@
-Person::Person() : Entity('X') {
+Person::Person() : Entity('@') {
 }
 
 void Person::move(int aKey) {
