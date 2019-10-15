@@ -11,7 +11,7 @@ class Obstacle : public Entity
 public:
 
 	Obstacle(char aSprite, std::string aMessage);
-	virtual void touched()=0;
+	virtual bool touched()=0;
 	~Obstacle();
 
 
