@@ -1,18 +1,21 @@
-#ifdef PERSON_H
+#ifndef PERSON_H
 #define PERSON_H
 
 #include "Entity.h"
-///#include <ncurses.h>
+#include <curses.h>
 
 class Person : public Entity
 {
 public:
 	Person();
-	void move(int aKey);
+	bool move(int aKey);
+	void setPos(int x, int y);
+	int getxPos();
+	int getyPos();
 	~Person();
 
 private:
-	int xPos, yPos
+	int xPos, yPos;
 
 };
 
