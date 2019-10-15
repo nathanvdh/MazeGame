@@ -6,10 +6,9 @@ Finish::Finish() : Obstacle('F', "You reached the finish") {
 
 }
 
-void Finish::touched() {
-	
-	std::cout << message << "\n";
-	//exit program?? not sure how
+bool Finish::touched() {
+	mvprintw(8,1, message);
+	return 1;
 }
 
 Finish::~Finish() {
