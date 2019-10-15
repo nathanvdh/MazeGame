@@ -10,32 +10,43 @@ void initCurses();
 
 int main(void)
 {	
-	initscr(); //initialize screen
-	cbreak(); //force cbreak mode (dont need to press enter to put character)
-	keypad(stdscr, TRUE); //enable function/arrow keys
-	curs_set(0); //disable cursor
-	noecho(); //disable echoing of input
+
 	//Maze *maze;
 	Wall *wall;
 	Finish *finish;
 	//Person *person;
 	
-	Maze maze = Maze();
+	const int MAPHEIGHT = 5,
+			  MAPWIDTH = 6;
+
+	Maze maze = Maze(MAPHEIGHT, MAPWIDTH);
 	wall = new Wall();
 	finish = new Finish();
 	//person = new Person();
 	
-	Obstacle* myMap[5][5] = 
-	{	wall,wall,wall,wall,wall,
-		wall,NULL,NULL,finish,wall,
-		wall,NULL,NULL,NULL,wall,
-		wall,NULL,NULL,NULL,wall,
-		wall,wall,wall,wall,wall,	};
+	Obstacle* myMap[MAPHEIGHT][MAPWIDTH] = 
+	{	wall,wall,wall,wall,wall,wall,
+		wall,NULL,NULL,NULL,finish,wall,
+		wall,NULL,NULL,NULL,NULL,wall,
+		wall,NULL,NULL,NULL,NULL,wall,
+		wall,wall,wall,wall,wall,wall,	};
 
-	maze.setMap(myMap);
+	Obstacle*** newMap = new Obstacle**[MAPHEIGHT];
+	for (int i = 0; i < MAPHEIGHT; ++i)
+  	{
+    	newMap[i] = new Obstacle*[MAPWIDTH];
+    	for (int j = 0; j < MAPWIDTH; ++j)
+    	{
+    		newMap[i][j] = myMap[i][j];
+    	}
+ 	}
 
 
-	//initCurses();
+
+	maze.setMap(newMap);
+
+
+	initCurses();
 
 	maze.drawMap();
 
@@ -48,6 +59,10 @@ int main(void)
 
 void initCurses() {
 
-
+	initscr(); //initialize screen
+	cbreak(); //force cbreak mode (dont need to press enter to put character)
+	keypad(stdscr, TRUE); //enable function/arrow keys
+	curs_set(0); //disable cursor
+	noecho(); //disable echoing of input
 
 }

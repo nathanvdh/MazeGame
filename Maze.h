@@ -5,15 +5,18 @@
 #include <curses.h>
 class Maze {
 public:
-	Maze();
-	void setMap(Obstacle* aMap[5][5]);
+	Maze(int height, int width);
+	void setMap(Obstacle*** aDynMap);
 	void drawMap();
 	~Maze();
 	
 private:
-	Obstacle* map[5][5];
+	//Obstacle* map[5][5];
 	int mapWidth;
 	int mapHeight;
+
+	//2d dynamic array attempt
+	Obstacle*** dynMap;
 };
 
 #endif //MAZE_H
