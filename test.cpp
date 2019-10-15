@@ -1,6 +1,7 @@
 #include "Wall.h"
 #include "Finish.h"
 #include "Maze.h"
+#inlcude "Space.h"
 //#include "Person.h"
 //#include <string>
 //#include <iostream>
@@ -19,18 +20,20 @@ int main(void)
 	//Maze *maze;
 	Wall *wall;
 	Finish *finish;
+	Space *space;
 	//Person *person;
 	
 	Maze maze = Maze();
 	wall = new Wall();
 	finish = new Finish();
+	space = new Space();
 	//person = new Person();
 	
 	Obstacle* myMap[5][5] = 
 	{	wall,wall,wall,wall,wall,
-		wall,NULL,NULL,finish,wall,
-		wall,NULL,NULL,NULL,wall,
-		wall,NULL,NULL,NULL,wall,
+		wall,space,space,finish,wall,
+		wall,space,space,space,wall,
+		wall,space,space,space,wall,
 		wall,wall,wall,wall,wall,	};
 
 	maze.setMap(myMap);
