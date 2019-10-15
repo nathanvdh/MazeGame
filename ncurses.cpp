@@ -107,7 +107,7 @@ int main(void)
 		inp = getch();
 		mvaddch(yPos,xPos,' ');
 		if (!(playerMove(inp, &xPos, &yPos, map))) {
-			//mvprintw(MAPHEIGHT+3,1,"You didn't press an arrow key");
+			//mvprintw(MAPHEIGHT+3,1,"You didn't move");
 		}
 
 		mvaddch(yPos,xPos,'@');
