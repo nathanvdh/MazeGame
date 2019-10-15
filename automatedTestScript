@@ -1,0 +1,2 @@
+echo Test: Move player to position 3, 3
+./test < input.txt | diff - expectedOutput.txt
