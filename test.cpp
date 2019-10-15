@@ -33,7 +33,7 @@ int main(void)
 		wall,space,space,space,space,wall,
 		wall,space,space,space,space,wall,
 		wall,wall,wall,wall,wall,wall,	};
-
+		
 	Obstacle*** newMap = new Obstacle**[MAPHEIGHT];
 	for (int i = 0; i < MAPHEIGHT; ++i)
   	{
@@ -43,7 +43,7 @@ int main(void)
     		newMap[i][j] = myMap[i][j];
     	}
  	}
-
+	
 	maze.setMap(newMap);
 
 
