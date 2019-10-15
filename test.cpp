@@ -1,7 +1,7 @@
 #include "Wall.h"
 #include "Finish.h"
 #include "Maze.h"
-#inlcude "Space.h"
+#include "Space.h"
 //#include "Person.h"
 //#include <string>
 //#include <iostream>
@@ -29,9 +29,9 @@ int main(void)
 	
 	Obstacle* myMap[MAPHEIGHT][MAPWIDTH] = 
 	{	wall,wall,wall,wall,wall,wall,
-		wall,NULL,NULL,NULL,finish,wall,
-		wall,NULL,NULL,NULL,NULL,wall,
-		wall,NULL,NULL,NULL,NULL,wall,
+		wall,space,space,space,finish,wall,
+		wall,space,space,space,space,wall,
+		wall,space,space,space,space,wall,
 		wall,wall,wall,wall,wall,wall,	};
 
 	Obstacle*** newMap = new Obstacle**[MAPHEIGHT];
@@ -52,8 +52,8 @@ int main(void)
 	maze.drawMap();
 	
 	//drawing of map and text
-	mvprintw(MAPHEIGHT,1,"Reach the end zone (X) to complete the game");
-	mvprintw(MAPHEIGHT+2,1,"Press q to quit game");
+	mvprintw(MAPHEIGHT+1,0,"Reach the end zone (X) to complete the game");
+	mvprintw(MAPHEIGHT+2,0,"Press q to quit game");
 	
 	/* Not ready to compile yet
 	//Puts cursor at starting position

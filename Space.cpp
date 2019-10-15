@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-Space::Space() : Obstacle(' ', "") {
+Space::Space() : Obstacle(' ', "\0") {
 
 }
 

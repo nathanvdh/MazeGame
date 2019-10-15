@@ -3,7 +3,7 @@
 
 #include "Obstacle.h"
 #include <string>
-class Wall : public Obstacle
+class Space : public Obstacle
 {
 public:
 

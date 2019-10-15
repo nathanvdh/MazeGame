@@ -7,7 +7,7 @@ Wall::Wall() : Obstacle('#', "You hit a wall") {
 }
 
 bool Wall::touched() {
-	mvprintw(8,1, message);
+	mvprintw(8,1, message.c_str()); //make these coords relative to map height
 	return 0;
 }
 

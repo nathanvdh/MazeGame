@@ -25,11 +25,11 @@ void Maze::drawMap(){//Obstacle* aMap[5,5], int mapWidth, int mapHeight) {
   int row,column;
   	for (row = 0; row < mapHeight; row++ ){
     	for (column = 0; column < mapWidth; column++) {
-      		if (dynMap[row][column]) {
+      		//if (dynMap[row][column]) {
       		mvaddch(row, column, dynMap[row][column]->getSprite());	
-      		} else {
-      			mvaddch(row, column, ' ');
-      		  }
+      		//} else {
+      		//	mvaddch(row, column, ' ');
+      		//  }
     	}
   	}
 }
