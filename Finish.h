@@ -8,7 +8,7 @@ class Finish : public Obstacle
 public:
 
 	Finish();
-	virtual void touched();
+	virtual bool touched();
 	~Finish();
 
 };
