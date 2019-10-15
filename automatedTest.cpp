@@ -21,5 +21,7 @@ int main(void) {
 	std::cout << player->getxPos() << ", " << player->getyPos() <<"\n";
 
 
-	std::cout << "Did player move? " << player->move(KEY_DOWN) << "\n";
+	std::cout << "Moving player down" << player->move(KEY_DOWN) << "\n";
+
+	std::cout << "New position is: " << player->getxPos() << ", " << player->getyPos() <<"\n";
 }

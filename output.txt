@@ -1,2 +1,3 @@
 3, 3
-Did player move? 1
+Moving player down
+New position is: 3, 4

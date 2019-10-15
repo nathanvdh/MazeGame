@@ -1,30 +1,25 @@
-//FOR TESTING
-//#include "Obstacle.h"
 #include "Wall.h"
 #include "Finish.h"
 #include "Maze.h"
-#include "Person.h"
-#include <string>
-#include <iostream>
+//#include "Person.h"
+//#include <string>
+//#include <iostream>
 #include <curses.h>
+
+void initCurses();
+
 int main(void)
-{
-	
+{	
+	//Maze *maze;
 	Wall *wall;
 	Finish *finish;
-	Person *person;
+	//Person *person;
 	
+	Maze maze = new Maze();
 	wall = new Wall();
 	finish = new Finish();
-	person = new Person();
-
-	std::cout << wall->getSprite() << "\n";
-	wall->touched();
-
+	//person = new Person();
 	
-	std::cout << finish->getSprite() << '\n';
-	finish->touched();
-
 	Obstacle* myMap[5][5] = 
 	{	wall,wall,wall,wall,wall,
 		wall,NULL,NULL,finish,wall,
@@ -32,29 +27,23 @@ int main(void)
 		wall,NULL,NULL,NULL,wall,
 		wall,wall,wall,wall,wall,	};
 
-	Maze maze = Maze();
 	maze.setMap(myMap);
-/*
+
+	initCurses();
+
+  	getch();
+  	endwin();
+
+
+	return 0;
+}
+
+void initCurses() {
+
 	initscr(); //initialize screen
 	cbreak(); //force cbreak mode (dont need to press enter to put character)
 	keypad(stdscr, TRUE); //enable function/arrow keys
 	curs_set(0); //disable cursor
-*/
-	//maze.drawMap();
-/*	
-	int row, column;
-  	
-  	for (row=0; row < 5; row++ ){
-    	for (column=0; column < 5 ;column++) {
-      		mvaddch(row, column, myMap[row][column]->getSprite());
-    	}
-  	}
-*/
-	//getch();
-	//endwin();
+	noecho(); //disable echoing of input
 
-
-
-
-	return 0;
 }
