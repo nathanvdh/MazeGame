@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-Finish::Finish() : Obstacle('F', "You reached the finish") {
+Finish::Finish() : Obstacle('X', "You reached the finish") {
 
 }
 
