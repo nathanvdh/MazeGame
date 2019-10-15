@@ -10,12 +10,17 @@ void initCurses();
 
 int main(void)
 {	
+	initscr(); //initialize screen
+	cbreak(); //force cbreak mode (dont need to press enter to put character)
+	keypad(stdscr, TRUE); //enable function/arrow keys
+	curs_set(0); //disable cursor
+	noecho(); //disable echoing of input
 	//Maze *maze;
 	Wall *wall;
 	Finish *finish;
 	//Person *person;
 	
-	Maze maze = new Maze();
+	Maze maze = Maze();
 	wall = new Wall();
 	finish = new Finish();
 	//person = new Person();
@@ -29,7 +34,10 @@ int main(void)
 
 	maze.setMap(myMap);
 
-	initCurses();
+
+	//initCurses();
+
+	maze.drawMap();
 
   	getch();
   	endwin();
@@ -40,10 +48,6 @@ int main(void)
 
 void initCurses() {
 
-	initscr(); //initialize screen
-	cbreak(); //force cbreak mode (dont need to press enter to put character)
-	keypad(stdscr, TRUE); //enable function/arrow keys
-	curs_set(0); //disable cursor
-	noecho(); //disable echoing of input
+
 
 }

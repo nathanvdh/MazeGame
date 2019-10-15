@@ -1,5 +1,5 @@
 walltest:
-	g++ Entity.cpp Obstacle.cpp Wall.cpp Finish.cpp test.cpp -o walltest.exe
+	g++ Entity.cpp Obstacle.cpp Wall.cpp Finish.cpp Maze.cpp test.cpp -o walltest.exe -lpdcurses
 ncurses:
 	g++ ncurses.cpp -o ncurses.exe -lncurses
 pdcurses:
