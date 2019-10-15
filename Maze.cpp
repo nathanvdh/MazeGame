@@ -35,5 +35,11 @@ void Maze::drawMap(){//Obstacle* aMap[5,5], int mapWidth, int mapHeight) {
 }
 
 Maze::~Maze() {
+  for (int i = 0; i < mapHeight; ++i)
+  {
+    delete[] dynMap[i];
+  }
+
+  delete[] dynMap;
 
 }
