@@ -39,6 +39,10 @@ int Person::getyPos() {
 	return yPos;
 }
 
+void Person::drawPerson() {
+	mvaddch(yPos,xPos,'@');
+}
+
 Person::~Person() {
 
 }

@@ -12,6 +12,7 @@ public:
 	void setPos(int x, int y);
 	int getxPos();
 	int getyPos();
+	void drawPerson();
 	~Person();
 
 private:

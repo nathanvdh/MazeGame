@@ -2,7 +2,7 @@
 #include "Finish.h"
 #include "Maze.h"
 #include "Space.h"
-//#include "Person.h"
+#include "Person.h"
 //#include <string>
 //#include <iostream>
 #include <curses.h>
@@ -16,7 +16,7 @@ int main(void)
 	Wall *wall;
 	Finish *finish;
 	Space *space;
-	//Person *person;
+	Person *person;
 	
 	const int MAPHEIGHT = 5,
 			  MAPWIDTH = 6;
@@ -25,7 +25,7 @@ int main(void)
 	wall = new Wall();
 	finish = new Finish();
 	space = new Space();
-	//person = new Person();
+	person = new Person();
 	
 	Obstacle* myMap[MAPHEIGHT][MAPWIDTH] = 
 	{	wall,wall,wall,wall,wall,wall,
@@ -55,28 +55,28 @@ int main(void)
 	mvprintw(MAPHEIGHT+1,0,"Reach the end zone (X) to complete the game");
 	mvprintw(MAPHEIGHT+2,0,"Press q to quit game");
 	
-	/* Not ready to compile yet
 	//Puts cursor at starting position
-	move(yPos,xPos);
-	mvaddch(yPos,xPos,'@');
+	//move(yPos,xPos);
 	
+	int inp = '\0';
 	bool move;
 	
 	while (inp !='q')
 	{
 		inp = getch();
 		
+		person->drawPerson();
 		//Switch statement checks the objects surround the player
 		switch (inp) {
-			case: UP
-				move = map[yPos++][xPos]->touched();
+			case KEY_UP :
+				move = maze[yPos++][xPos]->touched();
 				if (move==1) {
 					mvaddch(yPos,xPos,' ');
 					player-> move(inp);
 					mvaddch(yPos,xPos,'@');
 				}
 				break;
-			case: DOWN
+			case KEY_DOWN :
 				move = map[yPos--][xPos]->touched();
 				if (move==1) {
 					mvaddch(yPos,xPos,' ');
@@ -84,7 +84,7 @@ int main(void)
 					mvaddch(yPos,xPos,'@');
 				}
 				break;
-			case: LEFT
+			case KEY_LEFT :
 				move = map[yPos][xPos--]->touched();
 				if (move==1) {
 					mvaddch(yPos,xPos,' ');
@@ -92,7 +92,7 @@ int main(void)
 					mvaddch(yPos,xPos,'@');
 				}
 				break;
-			case: RIGHT
+			case KEY_RIGHT :
 				move = map[yPos][xPos++]->touched();
 				if (move==1) {
 					mvaddch(yPos,xPos,' ');
@@ -103,10 +103,8 @@ int main(void)
 		}
 		
 
-		};
-
-	}
-	*/
+		}
+	
   	getch();
   	endwin();
 
