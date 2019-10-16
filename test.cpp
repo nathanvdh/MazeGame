@@ -60,12 +60,14 @@ int main(void)
 	
 	int inp = '\0';
 	bool move;
-	
+	//Obstacle*** map = maze.getMap();
 	while (inp !='q')
 	{
 		inp = getch();
 		
 		person->drawPerson();
+		yPos = person.getyPos();
+		xPos = person.getxPos();
 		//Switch statement checks the objects surround the player
 		switch (inp) {
 			case KEY_UP :
