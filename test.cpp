@@ -8,6 +8,7 @@
 #include <curses.h>
 
 void initCurses();
+//Obstacle*** createMap(int height, int width, Space* space);
 
 int main(void)
 {	
@@ -28,36 +29,31 @@ int main(void)
 	person = new Person();
 
 	person->setPos(2,2);
-	//need to implement better map -> do loop idea - can put it in a function
-	Obstacle* myMap[MAPHEIGHT][MAPWIDTH] = 
-	{	wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,finish,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,
-	};
-		
-	Obstacle*** newMap = new Obstacle**[MAPHEIGHT];
+	//creates the map
+	Obstacle*** myMap = new Obstacle**[MAPHEIGHT];
 	for (int i = 0; i < MAPHEIGHT; ++i)
   	{
-    	newMap[i] = new Obstacle*[MAPWIDTH];
+    	myMap[i] = new Obstacle*[MAPWIDTH];
     	for (int j = 0; j < MAPWIDTH; ++j)
     	{
-    		newMap[i][j] = myMap[i][j];
+    		if (i == 0 || i == MAPHEIGHT-1 || j == 0 || j== MAPWIDTH-1)
+    		{
+    			myMap[i][j] = wall;
+    		} 
+
+    		else if (i == 10 && j == 10) {
+    			myMap[i][j] = finish;
+    		}
+
+    		else {
+    			myMap[i][j] = space;	
+    		}
+    		
     	}
  	}
+
 	
-	maze->setMap(newMap);
+	maze->setMap(myMap);
 
 
 	initCurses();
@@ -105,3 +101,21 @@ void initCurses() {
 	noecho(); //disable echoing of input
 
 }
+/*
+Obstacle*** createMap(int height, int width, Space* space) {
+	//create and fill with spaces
+	Obstacle*** myMap = new Obstacle**[height];
+	for (int i = 0; i < height; ++i)
+  	{
+    	myMap[i] = new Obstacle*[width];
+    	for (int j = 0; j < width; ++j)
+    	{
+    		myMap[i][j] = space;
+    	}
+ 	}
+
+
+
+
+}
+*/
