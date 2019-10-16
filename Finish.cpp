@@ -6,7 +6,7 @@ Finish::Finish() : Obstacle('X', "You reached the finish, press q to exit") {
 
 }
 
-bool Finish::touched(int yPos, Person* person) {
+bool Finish::touched(int yPos, Person* person, int keyPress) {
 	mvprintw(yPos, 0, "                              ");
 	mvprintw(yPos,0, message.c_str());
 	return 1;
