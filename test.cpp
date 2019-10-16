@@ -18,8 +18,8 @@ int main(void)
 	Space *space;
 	Person *person;
 	
-	const int MAPHEIGHT = 5,
-			  MAPWIDTH = 6;
+	const int MAPHEIGHT = 15,
+			  MAPWIDTH = 25;
 
 	Maze maze = Maze(MAPHEIGHT, MAPWIDTH);
 	wall = new Wall();
@@ -30,11 +30,22 @@ int main(void)
 	person->setPos(2,2);
 	
 	Obstacle* myMap[MAPHEIGHT][MAPWIDTH] = 
-	{	wall,wall,wall,wall,wall,wall,
-		wall,space,space,space,finish,wall,
-		wall,space,space,space,space,wall,
-		wall,space,space,space,space,wall,
-		wall,wall,wall,wall,wall,wall,	};
+	{	wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,
+		wall,space,space,space,space,space,space,space,space,space,space,space,space,finish,space,space,space,space,space,space,space,space,space,space,wall,
+		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
+		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
+		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
+		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
+		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
+		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
+		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
+		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
+		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
+		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
+		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
+		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
+		wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,
+	};
 		
 	Obstacle*** newMap = new Obstacle**[MAPHEIGHT];
 	for (int i = 0; i < MAPHEIGHT; ++i)
