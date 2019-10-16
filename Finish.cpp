@@ -2,12 +2,13 @@
 #include <iostream>
 #include <string>
 
-Finish::Finish() : Obstacle('F', "You reached the finish") {
+Finish::Finish() : Obstacle('X', "You reached the finish") {
 
 }
 
-bool Finish::touched() {
-	mvprintw(8,1, message.c_str()); //make these coords relative to map height
+bool Finish::touched(int yPos) {
+	mvprintw(yPos, 0, "                              ");
+	mvprintw(yPos,0, message.c_str());
 	return 1;
 }
 

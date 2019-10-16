@@ -6,7 +6,8 @@ Space::Space() : Obstacle(' ', "\0") {
 
 }
 
-bool Space::touched() {
+bool Space::touched(int yPos) {
+	mvprintw(yPos, 0, "                              ");
 	return 1;
 }
 

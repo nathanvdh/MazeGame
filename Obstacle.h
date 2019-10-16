@@ -12,9 +12,9 @@ class Obstacle : public Entity
 public:
 
 	Obstacle(char aSprite, std::string aMessage);
-	virtual bool touched()=0;
-	~Obstacle();
-
+	virtual bool touched(int yPos)=0; 	//touched() returns 1 if the player can move onto the obstacle, 0 if not 
+										//&& runs any code to be executed when you 'hit' the object
+	~Obstacle();		
 
 protected:
 	std::string message;
