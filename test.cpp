@@ -26,6 +26,8 @@ int main(void)
 	finish = new Finish();
 	space = new Space();
 	person = new Person();
+
+	person->setPos(2,2);
 	
 	Obstacle* myMap[MAPHEIGHT][MAPWIDTH] = 
 	{	wall,wall,wall,wall,wall,wall,
@@ -66,40 +68,39 @@ int main(void)
 		inp = getch();
 		
 		person->drawPerson();
-		yPos = person.getyPos();
-		xPos = person.getxPos();
+
 		//Switch statement checks the objects surround the player
 		switch (inp) {
 			case KEY_UP :
-				move = maze.getMap()[yPos++][xPos]->touched();
+				move = maze.getMap()[person->getyPos()-1][person->getxPos()]->touched();
 				if (move==1) {
-					mvaddch(yPos,xPos,' ');
-					player-> move(inp);
-					mvaddch(yPos,xPos,'@');
+					mvaddch(person->getyPos(),person->getxPos(),' ');
+					person-> move(inp);
+					mvaddch(person->getyPos(),person->getxPos(),'@');
 				}
 				break;
 			case KEY_DOWN :
-				move = maze.getMap()[yPos--][xPos]->touched();
+				move = maze.getMap()[person->getyPos()+1][person->getxPos()]->touched();
 				if (move==1) {
-					mvaddch(yPos,xPos,' ');
-					player-> move(inp);
-					mvaddch(yPos,xPos,'@');
+					mvaddch(person->getyPos(),person->getxPos(),' ');
+					person-> move(inp);
+					mvaddch(person->getyPos(),person->getxPos(),'@');
 				}
 				break;
 			case KEY_LEFT :
-				move = maze.getMap()[yPos][xPos--]->touched();
+				move = maze.getMap()[person->getyPos()][person->getxPos()-1]->touched();
 				if (move==1) {
-					mvaddch(yPos,xPos,' ');
-					player-> move(inp);
-					mvaddch(yPos,xPos,'@');
+					mvaddch(person->getyPos(),person->getxPos(),' ');
+					person-> move(inp);
+					mvaddch(person->getyPos(),person->getxPos(),'@');
 				}
 				break;
 			case KEY_RIGHT :
-				move = maze.getMap()[yPos][xPos++]->touched();
+				move = maze.getMap()[person->getyPos()][person->getxPos()+1]->touched();
 				if (move==1) {
-					mvaddch(yPos,xPos,' ');
-					player-> move(inp);
-					mvaddch(yPos,xPos,'@');
+					mvaddch(person->getyPos(),person->getxPos(),' ');
+					person-> move(inp);
+					mvaddch(person->getyPos(),person->getxPos(),'@');
 				}
 				break;
 		}
