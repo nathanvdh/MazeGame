@@ -12,7 +12,7 @@ void initCurses();
 int main(void)
 {	
 
-	//Maze *maze;
+	Maze *maze;
 	Wall *wall;
 	Finish *finish;
 	Space *space;
@@ -21,14 +21,14 @@ int main(void)
 	const int MAPHEIGHT = 15,
 			  MAPWIDTH = 25;
 
-	Maze maze = Maze(MAPHEIGHT, MAPWIDTH);
+	maze = new Maze(MAPHEIGHT, MAPWIDTH);
 	wall = new Wall();
 	finish = new Finish();
 	space = new Space();
 	person = new Person();
 
 	person->setPos(2,2);
-	
+	//need to implement better map -> do loop idea - can put it in a function
 	Obstacle* myMap[MAPHEIGHT][MAPWIDTH] = 
 	{	wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,
 		wall,space,space,space,space,space,space,space,space,space,space,space,space,finish,space,space,space,space,space,space,space,space,space,space,wall,
@@ -57,72 +57,42 @@ int main(void)
     	}
  	}
 	
-	maze.setMap(newMap);
+	maze->setMap(newMap);
 
 
 	initCurses();
 
-	maze.drawMap();
+	maze->drawMap();
 	
-	//drawing of map and text
-	mvprintw(MAPHEIGHT+1,0,"Reach the end zone (X) to complete the game");
-	mvprintw(MAPHEIGHT+2,0,"Press q to quit game");
-	
-	//Puts cursor at starting position
-	//move(yPos,xPos);
 	
 	int inp = '\0';
-	bool move;
+	//bool move;
 	//Obstacle*** map = maze.getMap();
 	while (inp !='q')
 	{
-		inp = getch();
-		
 		person->drawPerson();
+		inp = getch();
 
 		//Switch statement checks the objects surround the player
 		switch (inp) {
 			case KEY_UP :
-				move = maze.getMap()[person->getyPos()-1][person->getxPos()]->touched(MAPHEIGHT+3);
-				if (move==1) {
-					mvaddch(person->getyPos(),person->getxPos(),' ');
-					person-> move(inp);
-					mvaddch(person->getyPos(),person->getxPos(),'@');
-				}
+				maze->getMap()[person->getyPos()-1][person->getxPos()]->touched(maze, person, inp);
 				break;
 			case KEY_DOWN :
-				move = maze.getMap()[person->getyPos()+1][person->getxPos()]->touched(MAPHEIGHT+3);
-				if (move==1) {
-					mvaddch(person->getyPos(),person->getxPos(),' ');
-					person-> move(inp);
-					mvaddch(person->getyPos(),person->getxPos(),'@');
-				}
+				maze->getMap()[person->getyPos()+1][person->getxPos()]->touched(maze, person, inp);
 				break;
 			case KEY_LEFT :
-				move = maze.getMap()[person->getyPos()][person->getxPos()-1]->touched(MAPHEIGHT+3);
-				if (move==1) {
-					mvaddch(person->getyPos(),person->getxPos(),' ');
-					person-> move(inp);
-					mvaddch(person->getyPos(),person->getxPos(),'@');
-				}
+				maze->getMap()[person->getyPos()][person->getxPos()-1]->touched(maze, person, inp);
 				break;
 			case KEY_RIGHT :
-				move = maze.getMap()[person->getyPos()][person->getxPos()+1]->touched(MAPHEIGHT+3);
-				if (move==1) {
-					mvaddch(person->getyPos(),person->getxPos(),' ');
-					person-> move(inp);
-					mvaddch(person->getyPos(),person->getxPos(),'@');
-				}
+				maze->getMap()[person->getyPos()][person->getxPos()+1]->touched(maze, person, inp);
 				break;
 		}
 		
 
-		}
-	
-  	getch();
+	}
+  	
   	endwin();
-
-
 	return 0;
 }
 

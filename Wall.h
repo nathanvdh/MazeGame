@@ -8,7 +8,7 @@ class Wall : public Obstacle
 public:
 
 	Wall();
-	virtual bool touched(int yPos, Person* person, int keyPress);
+	virtual bool touched(Maze* maze, Person* person, int keyPress);
 	~Wall();
 };
 
