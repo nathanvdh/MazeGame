@@ -69,7 +69,7 @@ int main(void)
 		//Switch statement checks the objects surround the player
 		switch (inp) {
 			case KEY_UP :
-				move = maze[yPos++][xPos]->touched();
+				move = maze.getMap()[yPos++][xPos]->touched();
 				if (move==1) {
 					mvaddch(yPos,xPos,' ');
 					player-> move(inp);
@@ -77,7 +77,7 @@ int main(void)
 				}
 				break;
 			case KEY_DOWN :
-				move = map[yPos--][xPos]->touched();
+				move = maze.getMap()[yPos--][xPos]->touched();
 				if (move==1) {
 					mvaddch(yPos,xPos,' ');
 					player-> move(inp);
@@ -85,7 +85,7 @@ int main(void)
 				}
 				break;
 			case KEY_LEFT :
-				move = map[yPos][xPos--]->touched();
+				move = maze.getMap()[yPos][xPos--]->touched();
 				if (move==1) {
 					mvaddch(yPos,xPos,' ');
 					player-> move(inp);
@@ -93,7 +93,7 @@ int main(void)
 				}
 				break;
 			case KEY_RIGHT :
-				move = map[yPos][xPos++]->touched();
+				move = maze.getMap()[yPos][xPos++]->touched();
 				if (move==1) {
 					mvaddch(yPos,xPos,' ');
 					player-> move(inp);
