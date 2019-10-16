@@ -12,11 +12,9 @@ public:
 	~Maze();
 	
 private:
-	//Obstacle* map[5][5];
 	int mapWidth;
 	int mapHeight;
 
-	//2d dynamic array attempt
 	Obstacle*** dynMap;
 };
 

@@ -8,7 +8,7 @@ class Finish : public Obstacle
 public:
 
 	Finish();
-	virtual bool touched(int yPos);
+	virtual bool touched(int yPos, Person* person);
 	~Finish();
 
 };
