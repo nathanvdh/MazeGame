@@ -3,11 +3,14 @@
 #include "Maze.h"
 #include "Space.h"
 #include "Person.h"
+#include "Hole.h"
+#include "Banana.h"
 //#include <string>
 //#include <iostream>
 #include <curses.h>
 
 void initCurses();
+//Obstacle*** createMap(int height, int width, Space* space);
 
 int main(void)
 {	
@@ -17,6 +20,8 @@ int main(void)
 	Finish *finish;
 	Space *space;
 	Person *person;
+	Hole *hole;
+	Banana *banana;
 	
 	const int MAPHEIGHT = 15,
 			  MAPWIDTH = 25;
@@ -26,38 +31,43 @@ int main(void)
 	finish = new Finish();
 	space = new Space();
 	person = new Person();
+	hole = new Hole();
+	banana = new Banana();
 
 	person->setPos(2,2);
-	//need to implement better map -> do loop idea - can put it in a function
-	Obstacle* myMap[MAPHEIGHT][MAPWIDTH] = 
-	{	wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,finish,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,space,wall,
-		wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,wall,
-	};
-		
-	Obstacle*** newMap = new Obstacle**[MAPHEIGHT];
+	//creates the map
+	Obstacle*** myMap = new Obstacle**[MAPHEIGHT];
 	for (int i = 0; i < MAPHEIGHT; ++i)
   	{
-    	newMap[i] = new Obstacle*[MAPWIDTH];
+    	myMap[i] = new Obstacle*[MAPWIDTH];
     	for (int j = 0; j < MAPWIDTH; ++j)
     	{
-    		newMap[i][j] = myMap[i][j];
+    		if (i == 0 || i == MAPHEIGHT-1 || j == 0 || j== MAPWIDTH-1)
+    		{
+    			myMap[i][j] = wall;
+    		} 
+
+    		else if (i == 10 && j == 10) {
+    			myMap[i][j] = finish;
+    		}
+
+    		else if ((i== 9 && j==10) || (i==9 && j==11) || (i==10 && j==11) || (i==11 && j==11) || (i==11 && j==10) ){
+    			myMap[i][j] = hole;
+    		}
+
+    		else if (i==3 && j==3) {
+    			myMap[i][j] = banana;
+    		}
+
+    		else {
+    			myMap[i][j] = space;	
+    		}
+    		
     	}
  	}
+
 	
-	maze->setMap(newMap);
+	maze->setMap(myMap);
 
 
 	initCurses();
@@ -65,31 +75,19 @@ int main(void)
 	maze->drawMap();
 	
 	
-	int inp = '\0';
+	int keyPress = '\0';
 	//bool move;
 	//Obstacle*** map = maze.getMap();
-	while (inp !='q')
+	while (keyPress !='q')
 	{
 		person->drawPerson();
-		inp = getch();
-
-		//Switch statement checks the objects surround the player
-		switch (inp) {
-			case KEY_UP :
-				maze->getMap()[person->getyPos()-1][person->getxPos()]->touched(maze, person, inp);
-				break;
-			case KEY_DOWN :
-				maze->getMap()[person->getyPos()+1][person->getxPos()]->touched(maze, person, inp);
-				break;
-			case KEY_LEFT :
-				maze->getMap()[person->getyPos()][person->getxPos()-1]->touched(maze, person, inp);
-				break;
-			case KEY_RIGHT :
-				maze->getMap()[person->getyPos()][person->getxPos()+1]->touched(maze, person, inp);
-				break;
+		keyPress = getch();
+		
+		if (keyPress == KEY_UP || keyPress == KEY_DOWN || keyPress == KEY_LEFT || keyPress == KEY_RIGHT )
+		{
+			maze->getNextObstacle(person, keyPress)->touched(maze, person, keyPress);
 		}
 		
-
 	}
   	
   	endwin();
@@ -105,3 +103,21 @@ void initCurses() {
 	noecho(); //disable echoing of input
 
 }
+/*
+Obstacle*** createMap(int height, int width, Space* space) {
+	//create and fill with spaces
+	Obstacle*** myMap = new Obstacle**[height];
+	for (int i = 0; i < height; ++i)
+  	{
+    	myMap[i] = new Obstacle*[width];
+    	for (int j = 0; j < width; ++j)
+    	{
+    		myMap[i][j] = space;
+    	}
+ 	}
+
+
+
+
+}
+*/
