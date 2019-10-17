@@ -4,6 +4,7 @@
 #include "Space.h"
 #include "Person.h"
 #include "Hole.h"
+#include "Banana.h"
 //#include <string>
 //#include <iostream>
 #include <curses.h>
@@ -20,6 +21,7 @@ int main(void)
 	Space *space;
 	Person *person;
 	Hole *hole;
+	Banana *banana;
 	
 	const int MAPHEIGHT = 15,
 			  MAPWIDTH = 25;
@@ -30,6 +32,7 @@ int main(void)
 	space = new Space();
 	person = new Person();
 	hole = new Hole();
+	banana = new Banana();
 
 	person->setPos(2,2);
 	//creates the map
@@ -50,6 +53,10 @@ int main(void)
 
     		else if ((i== 9 && j==10) || (i==9 && j==11) || (i==10 && j==11) || (i==11 && j==11) || (i==11 && j==10) ){
     			myMap[i][j] = hole;
+    		}
+
+    		else if (i==3 && j==3) {
+    			myMap[i][j] = banana;
     		}
 
     		else {
