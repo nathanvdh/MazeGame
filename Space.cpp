@@ -8,7 +8,7 @@ Space::Space() : Obstacle(' ', "\0") {
 
 bool Space::touched(Maze* maze, Person* person, int keyPress) {
 	movePerson(maze, person, keyPress);	
-	mvprintw(maze->getMapHeight(), 0, "                                              ");
+	mvprintw(maze->getMapHeight(), 0, message.c_str());
 	return 0;
 }
 
