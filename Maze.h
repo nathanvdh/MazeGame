@@ -2,6 +2,7 @@
 #define MAZE_H
 
 #include <curses.h>
+#include "Person.h"
 class Obstacle;
 class Maze {
 public:
@@ -9,6 +10,7 @@ public:
 	void setMap(Obstacle*** aDynMap);
 	void drawMap();
 	Obstacle*** getMap();
+	Obstacle* getNextObstacle(Person* person, int keyPress);
 	int getMapHeight();
 	~Maze();
 	

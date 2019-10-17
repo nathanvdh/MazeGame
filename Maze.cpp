@@ -43,6 +43,26 @@ int Maze::getMapHeight() {
   return mapHeight;
 }
 
+Obstacle* Maze::getNextObstacle(Person* person, int keyPress) {
+      switch (keyPress) {
+      case KEY_UP :
+        return dynMap[person->getyPos()-1][person->getxPos()];
+        break;
+      case KEY_DOWN :
+        return dynMap[person->getyPos()+1][person->getxPos()];
+        break;
+      case KEY_LEFT :
+        return dynMap[person->getyPos()][person->getxPos()-1];
+        break;
+      case KEY_RIGHT :
+        return dynMap[person->getyPos()][person->getxPos()+1];
+        break;
+      default:
+        return NULL;
+    }
+}
+
+
 Maze::~Maze() {
   for (int i = 0; i < mapHeight; ++i)
   {
