@@ -8,7 +8,7 @@ Banana::Banana() : Obstacle('(', "You slipped on a banana                       
 }
 
 bool Banana::touched(Maze* maze, Person* person, int keyPress) {
-	mvprintw(maze->getMapHeight(),0, message.c_str());
+	
 	//moves person onto and off banana
 	movePerson(maze, person, keyPress);	
 	//person->move(keyPress,maze->getMap()[person->getyPos()][person->getxPos()]->getSprite());
@@ -23,8 +23,7 @@ bool Banana::touched(Maze* maze, Person* person, int keyPress) {
 		}
 
 	}
-
-
+	mvprintw(maze->getMapHeight(),0, message.c_str());
 	return 1;
 }
 
