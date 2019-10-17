@@ -8,8 +8,8 @@ class Hole : public Obstacle
 public:
 
 	Hole();
-	virtual bool touched(int yPos, Person* person);
+	virtual bool touched(Maze* maze, Person* person, int keyPress);
 	~Hole();
 };
 
-#endif //WALL_H
+#endif //HOLE_H

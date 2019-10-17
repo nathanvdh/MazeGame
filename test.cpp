@@ -3,6 +3,7 @@
 #include "Maze.h"
 #include "Space.h"
 #include "Person.h"
+#include "Hole.h"
 //#include <string>
 //#include <iostream>
 #include <curses.h>
@@ -18,6 +19,7 @@ int main(void)
 	Finish *finish;
 	Space *space;
 	Person *person;
+	Hole *hole;
 	
 	const int MAPHEIGHT = 15,
 			  MAPWIDTH = 25;
@@ -27,6 +29,7 @@ int main(void)
 	finish = new Finish();
 	space = new Space();
 	person = new Person();
+	hole = new Hole();
 
 	person->setPos(2,2);
 	//creates the map
@@ -43,6 +46,10 @@ int main(void)
 
     		else if (i == 10 && j == 10) {
     			myMap[i][j] = finish;
+    		}
+
+    		else if ((i== 9 && j==10) || (i==9 && j==11) || (i==10 && j==11) || (i==11 && j==11) || (i==11 && j==10) ){
+    			myMap[i][j] = hole;
     		}
 
     		else {
