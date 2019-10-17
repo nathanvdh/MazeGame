@@ -14,7 +14,10 @@ void initCurses();
 
 int main(void)
 {	
+	const int MAPHEIGHT = 15,
+			  MAPWIDTH = 25;
 
+			  
 	Maze *maze;
 	Wall *wall;
 	Finish *finish;
@@ -22,9 +25,6 @@ int main(void)
 	Person *person;
 	Hole *hole;
 	Banana *banana;
-	
-	const int MAPHEIGHT = 15,
-			  MAPWIDTH = 25;
 
 	maze = new Maze(MAPHEIGHT, MAPWIDTH);
 	wall = new Wall();
@@ -33,9 +33,9 @@ int main(void)
 	person = new Person();
 	hole = new Hole();
 	banana = new Banana();
-
-	person->setPos(2,2);
+	
 	//creates the map
+
 	Obstacle*** myMap = new Obstacle**[MAPHEIGHT];
 	for (int i = 0; i < MAPHEIGHT; ++i)
   	{
@@ -55,7 +55,7 @@ int main(void)
     			myMap[i][j] = hole;
     		}
 
-    		else if (i==3 && j==3) {
+    		else if ((i==9 && j==8) || (i == 9 && j == 4)) {
     			myMap[i][j] = banana;
     		}
 
@@ -66,14 +66,11 @@ int main(void)
     	}
  	}
 
-	
+ 	person->setPos(2,2);
+
 	maze->setMap(myMap);
-
-
 	initCurses();
-
 	maze->drawMap();
-	
 	
 	int keyPress = '\0';
 	//bool move;

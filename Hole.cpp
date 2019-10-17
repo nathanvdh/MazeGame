@@ -11,7 +11,7 @@ bool Hole::touched(Maze* maze, Person* person, int keyPress) {
 	person->setPos(2,2);
 	mvprintw(maze->getMapHeight(),0, message.c_str());
 
-	return 0;
+	return 1;
 }
 
 Hole::~Hole() {
