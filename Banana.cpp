@@ -13,7 +13,10 @@ bool Banana::touched(Maze* maze, Person* person, int keyPress) {
 	movePerson(maze, person, keyPress);	
 	//person->move(keyPress,maze->getMap()[person->getyPos()][person->getxPos()]->getSprite());
 	//continually moves person
-	
+	while (maze->getNextObstacle(person, keyPress)->getSprite() == ' ') {
+		movePerson(maze, person, keyPress);
+	}
+	/*
 	switch (keyPress) {
 		case KEY_UP:
 			while(maze->getMap()[person->getyPos()-1][person->getxPos()]->getSprite() == (' ')) {
@@ -37,6 +40,7 @@ bool Banana::touched(Maze* maze, Person* person, int keyPress) {
 			break;
 
 	}
+	*/
 	return 0;
 }
 
