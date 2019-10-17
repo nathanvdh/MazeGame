@@ -7,7 +7,7 @@ Space::Space() : Obstacle(' ', "\0") {
 }
 
 bool Space::touched(Maze* maze, Person* person, int keyPress) {
-	person->move(keyPress, maze->getMap()[person->getyPos()][person->getxPos()]->getSprite());
+	movePerson(maze, person, keyPress);	
 	mvprintw(maze->getMapHeight(), 0, "                                              ");
 	return 1;
 }
