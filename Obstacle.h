@@ -4,23 +4,25 @@
 //Obstacle is an abstract class and cannot be instantiated
 
 #include "Entity.h"
+#include "Person.h"
+#include "Maze.h"
+
 #include <string>
 #include <curses.h>
+
 
 class Obstacle : public Entity
 {
 public:
 
 	Obstacle(char aSprite, std::string aMessage);
-	virtual bool touched()=0;
-	~Obstacle();
-
+	virtual bool touched(Maze* maze, Person* person, int keyPress)=0; 	//touched() returns 1 if the player can move onto the obstacle, 0 if not 
+														//&& runs any code to be executed when you 'hit' the object
+	void movePerson(Maze* maze, Person* person, int keyPress);
+	~Obstacle();		
 
 protected:
 	std::string message;
-	//potentially could have static messageArray - array of predefined obstacle messages
-	// then the constructor can have int messageNumber
-	//i.e. when you construct object just specify number and not whole string
 	
 };
 

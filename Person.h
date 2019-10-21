@@ -8,10 +8,11 @@ class Person : public Entity
 {
 public:
 	Person();
-	bool move(int aKey);
+	bool move(int aKey, char trail);
 	void setPos(int x, int y);
 	int getxPos();
 	int getyPos();
+	void drawPerson();
 	~Person();
 
 private:

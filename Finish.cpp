@@ -2,12 +2,14 @@
 #include <iostream>
 #include <string>
 
-Finish::Finish() : Obstacle('X', "You reached the finish") {
+Finish::Finish() : Obstacle('X', "You reached the finish, press q to exit         ") {
 
 }
 
-bool Finish::touched() {
-	mvprintw(8,1, message.c_str()); //make these coords relative to map height
+bool Finish::touched(Maze* maze, Person* person, int keyPress) {
+	movePerson(maze, person, keyPress);	
+	//mvprintw(maze->getMapHeight(), 0, "                              ");
+	mvprintw(maze->getMapHeight(),0, message.c_str());
 	return 1;
 }
 

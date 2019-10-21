@@ -4,7 +4,8 @@ Person::Person() : Entity('@') {
 	yPos = 0;
 }
 
-bool Person::move(int aKey) {
+bool Person::move(int aKey, char trail) {
+	mvaddch(yPos, xPos, trail);
 	switch (aKey) {
 		case KEY_UP:
 				yPos--;
@@ -28,6 +29,7 @@ bool Person::move(int aKey) {
 }
 
 void Person::setPos(int x, int y) {
+
 	xPos = x;
 	yPos = y;
 }
@@ -37,6 +39,10 @@ int Person::getxPos() {
 }
 int Person::getyPos() {
 	return yPos;
+}
+
+void Person::drawPerson() {
+	mvaddch(yPos,xPos,'@');
 }
 
 Person::~Person() {

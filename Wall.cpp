@@ -2,12 +2,12 @@
 #include <iostream>
 #include <string>
 
-Wall::Wall() : Obstacle('#', "You hit a wall") {
+Wall::Wall() : Obstacle('#', "You hit a wall                                 ") {
 
 }
 
-bool Wall::touched() {
-	mvprintw(8,1, message.c_str()); //make these coords relative to map height
+bool Wall::touched(Maze* maze, Person* person, int keyPress) {
+	mvprintw(maze->getMapHeight(),0, message.c_str());
 	return 0;
 }
 

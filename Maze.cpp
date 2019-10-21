@@ -1,5 +1,5 @@
 #include "Maze.h"
-
+#include "Obstacle.h"
 Maze::Maze(int height,int width) {
   mapHeight=height;
   mapWidth=width;
@@ -21,18 +21,47 @@ void Maze::setMap(Obstacle*** aDynMap) {
   	}
 }
 
-void Maze::drawMap(){//Obstacle* aMap[5,5], int mapWidth, int mapHeight) {
+void Maze::drawMap(){
+  
+
   int row,column;
   	for (row = 0; row < mapHeight; row++ ){
     	for (column = 0; column < mapWidth; column++) {
-      		//if (dynMap[row][column]) {
       		mvaddch(row, column, dynMap[row][column]->getSprite());	
-      		//} else {
-      		//	mvaddch(row, column, ' ');
-      		//  }
     	}
   	}
+
+  mvprintw(mapHeight+1,0,"Reach the end zone (X) to complete the game");
+  mvprintw(mapHeight+2,0,"Press q to quit game");
 }
+
+Obstacle*** Maze::getMap() {
+	return dynMap;
+}
+
+int Maze::getMapHeight() {
+  return mapHeight;
+}
+
+Obstacle* Maze::getNextObstacle(Person* person, int keyPress) {
+      switch (keyPress) {
+      case KEY_UP :
+        return dynMap[person->getyPos()-1][person->getxPos()];
+        break;
+      case KEY_DOWN :
+        return dynMap[person->getyPos()+1][person->getxPos()];
+        break;
+      case KEY_LEFT :
+        return dynMap[person->getyPos()][person->getxPos()-1];
+        break;
+      case KEY_RIGHT :
+        return dynMap[person->getyPos()][person->getxPos()+1];
+        break;
+      default:
+        return NULL;
+    }
+}
+
 
 Maze::~Maze() {
   for (int i = 0; i < mapHeight; ++i)

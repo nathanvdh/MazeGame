@@ -1,15 +1,15 @@
-#ifndef WALL_H
-#define WALL_H
+#ifndef BANANA_H
+#define BANANA_H
 
 #include "Obstacle.h"
 #include <string>
-class Wall : public Obstacle
+class Banana : public Obstacle
 {
 public:
 
-	Wall();
+	Banana();
 	virtual bool touched(Maze* maze, Person* person, int keyPress);
-	~Wall();
+	~Banana();
 };
 
-#endif //WALL_H
+#endif //BANANA_H
