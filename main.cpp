@@ -16,27 +16,39 @@ int main(void)
 {	
 	const int MAPHEIGHT = 15,
 			  MAPWIDTH = 25;
-	  
+	
 	Maze *maze;
 	Person *person;
 	
 	maze = new Maze(MAPHEIGHT, MAPWIDTH);
 	person = new Person();
 
- 	person->setPos(2,2);
-	
+ 	
+	//Create and set map in maze
 	Obstacle*** myMap = Map1(MAPHEIGHT, MAPWIDTH, maze, person);
 	maze->setMap(myMap);
 	
+	//delete unneeded myMap
+	for (int i = 0; i < MAPHEIGHT; ++i)
+ 		{
+    		delete[] myMap[i];
+  		}
+
+  	delete[] myMap;
+	
+	//set starting position of player and ask for username
+	person->setPos(2, 2, maze);
 	person->promptName();
 
 	initCurses();
-	
+
+	//draw map and player to the screen
 	maze->drawMap(person);
 	person->drawPerson();
 	
 	int keyPress = '\0';
 
+	//loop getting input and moving the player
 	while (keyPress !='q')
 	{
 		keyPress = getch();
