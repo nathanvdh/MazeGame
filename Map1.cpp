@@ -9,6 +9,7 @@
 //creates the map
 Obstacle*** Map1(int MAPHEIGHT, int MAPWIDTH, Maze *maze, Person *person) {
 	
+
 	Wall *wall;
 	Finish *finish;
 	Space *space;
@@ -22,7 +23,7 @@ Obstacle*** Map1(int MAPHEIGHT, int MAPWIDTH, Maze *maze, Person *person) {
 	banana = new Banana();
 
 	//Please don't judge my maze creation skills
-	std::string textMap[MAPHEIGHT] = { 
+	std::string textMap[MAPHEIGHT] = { //creates an easily editable and readable map
 
 		"#########################",
 		"#         #             #",
@@ -43,6 +44,8 @@ Obstacle*** Map1(int MAPHEIGHT, int MAPWIDTH, Maze *maze, Person *person) {
 	
 	char currentChar= textMap[0].at(0);
 	
+	// loop through textMap and allocate a dynamic array of obstacles in the correct positions
+	//remember to delete elsewhere
 	Obstacle*** myMap = new Obstacle**[MAPHEIGHT];
 	
 	for (int i = 0; i < MAPHEIGHT; ++i) {
