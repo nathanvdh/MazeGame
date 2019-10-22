@@ -10,8 +10,9 @@ Entity::Entity(char aSprite) {
 	sprite = aSprite;
 }
 
-void Entity::setSprite(char aSprite) {
+bool Entity::setSprite(char aSprite) {
 	sprite = aSprite;
+	return 1;
 }
 
 char Entity::getSprite() {

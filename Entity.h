@@ -9,7 +9,7 @@ public:
 	Entity();
 	Entity(char aSprite);
 	
-	void setSprite(char aSprite);
+	bool setSprite(char aSprite);
 	char getSprite();
 	
 	~Entity();
