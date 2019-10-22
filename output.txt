@@ -1,3 +1,20 @@
-3, 3
-Moving player down
-New position is: 3, 4
+testing Entity class
+1
+*
+testing Obstacle class
+0
+testing Wall class
+1
+testing maze class
+1
+5
+5
+1
+testing person class
+1
+2 2
+0
+1
+testing Hole class
+1
+testing Banana class

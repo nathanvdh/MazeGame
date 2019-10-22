@@ -79,35 +79,22 @@ int main (void) {
 	space = new Space();
 	maze = new Maze(MAPHEIGHT, MAPWIDTH);
 
-	std::string textMap[MAPHEIGHT] = { 
-
-		"#####",
-		"#   #",
-		"#   #",
-		"#   #",
-		"#####",
-	};
-	
-	char currentChar= textMap[0].at(0);
 	Obstacle*** Map = new Obstacle**[MAPHEIGHT];
 	for (int i = 0; i < MAPHEIGHT; ++i) {
     		Map[i] = new Obstacle*[MAPWIDTH];
     		for (int j = 0; j < MAPWIDTH; ++j) {
-    			currentChar= textMap[i].at(j);
-    			switch (currentChar) {
-    				case '#':
-    					Map[i][j] = wall;
-    					break;
-    				case ' ':
-    					Map[i][j] = space;
-    					break;
+				if (i==0 || i== MAPHEIGHT || j == 0 || j == MAPWIDTH) {
+    				Map[i][j]= wall;
+				} else {
+					Map[i][j]=space;
 				}
     		}
  	}
 
 	cout << maze->setMap(Map) << endl;
-	cout << maze->getMapHeight() << endl;
-	cout << maze->getMapWidth() << endl;
+	cout << maze->getMapHeight() << " " << maze->getMapWidth() << endl;
+	cout << maze->drawMap() << endl;
+	//getMap()
 
 	//person class testing
 	cout<< "testing person class" << endl;
@@ -116,6 +103,9 @@ int main (void) {
 	cin >> yPos;	
 	cout << person->setPos(xPos, yPos, MAPHEIGHT, MAPWIDTH) <<endl;
 	cout << person->getxPos() << " " << person->getyPos() << endl;
+	//cout << maze->getNextObstacle(person, keyPress)[person->getyPos()][person->getxPos()]->getSprite() << endl;
+	cout << person->move(maze, keyPress) <<endl;
+	cout << person->drawPerson() << endl;
 
 		//Hole class testing
 	cout<< "testing Hole class" << endl;
