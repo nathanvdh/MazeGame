@@ -6,9 +6,9 @@
 #include "Hole.h"
 #include "Banana.h"
 #include <string>
-Obstacle*** Map1(int MAPHEIGHT, int MAPWIDTH, Maze *maze, Person *person) {
 //creates the map
-
+Obstacle*** Map1(int MAPHEIGHT, int MAPWIDTH, Maze *maze, Person *person) {
+	
 	Wall *wall;
 	Finish *finish;
 	Space *space;
@@ -21,23 +21,23 @@ Obstacle*** Map1(int MAPHEIGHT, int MAPWIDTH, Maze *maze, Person *person) {
 	hole = new Hole();
 	banana = new Banana();
 
-
+	//Please don't judge my maze creation skills
 	std::string textMap[MAPHEIGHT] = { 
 
 		"#########################",
-		"#                       #",
-		"#                       #",
-		"#                       #",
-		"#                       #",
-		"#  (        O           #",
-		"#                       #",
-		"#                    (  #",
-		"#                       #",
-		"#                       #",
-		"#                    O  #",
-		"#                   OXO #",
-		"#  O                    #",
-		"#                       #",
+		"#         #             #",
+		"#  ###(#### #### ######(#",
+		"#### #      #  # #    # #",
+		"#  O # #####      ###   #",
+		"#    #       O (        #",
+		"# #(##### # ###  # # ####",
+		"# #    #   #  #   #  (  #",
+		"# ## # # ###  #O# ###  ##",
+		"#  # # # # #  ( O       #",
+		"# ## #        #######O# #",
+		"# #  # # ###    (   OXO #",
+		"# #O ###   #  # ##  #   #",
+		"#    #     #  #  #   O###",
 		"#########################",
 	};
 	

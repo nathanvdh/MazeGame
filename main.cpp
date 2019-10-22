@@ -24,13 +24,13 @@ int main(void)
 	person = new Person();
 
  	person->setPos(2,2);
-	
+	Obstacle*** myMap = Map1(MAPHEIGHT, MAPWIDTH, maze, person);
 	std::cout << "Enter user name: " << std::endl;
 	std::string name;
 	std::cin >> name;
 	name = "Player: " + name;
 	
-	Obstacle*** myMap = Map1(MAPHEIGHT, MAPWIDTH, maze, person);
+	
 	
 	maze->setMap(myMap);
 	initCurses();
