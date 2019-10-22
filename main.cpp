@@ -5,8 +5,8 @@
 #include "Person.h"
 #include "Hole.h"
 #include "Banana.h"
-//#include <string>
-//#include <iostream>
+#include <string>
+#include <iostream>
 #include <curses.h>
 
 void initCurses();
@@ -24,10 +24,17 @@ int main(void)
 	person = new Person();
 
  	person->setPos(2,2);
+	
+	std::cout << "Enter user name: " << std::endl;
+	std::string name;
+	std::cin >> name;
+	name = "Player: " + name;
 
 	maze->setMap(Map1(MAPHEIGHT, MAPWIDTH, maze, person));
 	initCurses();
 	maze->drawMap();
+	mvprintw(MAPHEIGHT+4,0,name.c_str());
+
 	
 	int keyPress = '\0';
 	//bool move;
