@@ -9,22 +9,19 @@ Banana::Banana() : Obstacle('(', "You slipped on a banana                       
 
 bool Banana::touched(Maze* maze, Person* person, int keyPress) {
 	
-	//moves person onto and off banana
-	movePerson(maze, person, keyPress);	
-	//person->move(keyPress,maze->getMap()[person->getyPos()][person->getxPos()]->getSprite());
-	//continually moves person
-	while (maze->getNextObstacle(person, keyPress)->getSprite() != '#') {
-		
-
-		if (maze->getNextObstacle(person, keyPress)->touched(maze, person, keyPress))
-		{
-
-			break;
-		}
-
+	Obstacle* nextOb = maze->getNextObstacle(person, keyPress);
+	while (!(nextOb->isWall())) {
+		 if (person->move(maze, keyPress)) {				//if the player was moved involuntarily ('move' returns 1 if so)
+		 	break;  										//break out of the banana slide
+		 }
+		nextOb = maze->getNextObstacle(person, keyPress); 	//get the next obstacle relative to the new position
 	}
-	mvprintw(maze->getMapHeight(),0, message.c_str());
-	return 1;
+
+	
+
+
+	Obstacle::touched(maze, person, keyPress);
+	return 1; //person was moved involuntarily so touched returns 1
 }
 
 Banana::~Banana() {

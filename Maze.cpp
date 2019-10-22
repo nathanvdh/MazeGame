@@ -1,5 +1,6 @@
 #include "Maze.h"
 #include "Obstacle.h"
+#include "Person.h"
 Maze::Maze(int height,int width) {
   mapHeight=height;
   mapWidth=width;
@@ -60,6 +61,10 @@ Obstacle* Maze::getNextObstacle(Person* person, int keyPress) {
       default:
         return NULL;
     }
+}
+
+Obstacle* Maze::getCurrentObstacle(Person* person) {
+  return dynMap[person->getyPos()][person->getxPos()];
 }
 
 

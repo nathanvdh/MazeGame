@@ -6,9 +6,8 @@ Wall::Wall() : Obstacle('#', "You hit a wall                                 ") 
 
 }
 
-bool Wall::touched(Maze* maze, Person* person, int keyPress) {
-	mvprintw(maze->getMapHeight(),0, message.c_str());
-	return 0;
+bool Wall::isWall() {
+	return 1;
 }
 
 Wall::~Wall() {

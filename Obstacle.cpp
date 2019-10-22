@@ -2,14 +2,17 @@
 #include <string>
 #include <iostream>
 
-//Obstacle is an abstract class and cannot be instantiated
-
 Obstacle::Obstacle(char aSprite, std::string aMessage) : Entity (aSprite) {
 	message = aMessage;
 }
 
-void Obstacle::movePerson(Maze* maze, Person* person, int keyPress) {
-	person->move(keyPress, maze->getMap()[person->getyPos()][person->getxPos()]->getSprite());
+bool Obstacle::touched(Maze* maze, Person* person, int keyPress) {
+	mvprintw(maze->getMapHeight(),0, message.c_str());
+	return 0;
+}
+
+bool Obstacle::isWall() {
+	return 0;
 }
 
 Obstacle::~Obstacle() {
