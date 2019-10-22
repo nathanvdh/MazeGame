@@ -2,9 +2,10 @@
 #define MAZE_H
 
 #include <curses.h>
-//#include "Person.h"
+
 class Person;
 class Obstacle;
+
 class Maze {
 public:
 	Maze(int height, int width);

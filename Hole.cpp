@@ -10,7 +10,7 @@ bool Hole::touched(Maze* maze, Person* person, int keyPress) {
 	person->setPos(2,2);
 	Obstacle::touched(maze, person, keyPress);
 	
-	return 1; //we moved involunatirly
+	return 1; //person was moved involunatirly so touched returns 1
 }
 
 Hole::~Hole() {
