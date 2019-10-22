@@ -7,7 +7,7 @@ Hole::Hole() : Obstacle('O', "You fell in a hole                      ") {
 }
 
 bool Hole::touched(Maze* maze, Person* person, int keyPress) {
-	person->setPos(2,2);
+	person->setPos(2,2, maze->getMapHeight(), maze->getMapWidth());
 	Obstacle::touched(maze, person, keyPress);
 	
 	return 1; //person was moved involuntarily so touched returns 1

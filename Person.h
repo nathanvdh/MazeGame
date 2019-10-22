@@ -11,7 +11,7 @@ class Person : public Entity
 public:
 	Person();
 	bool move(Maze* maze, int aKey);
-	bool setPos(int x, int y);
+	bool setPos(int x, int y, int MAPHEIGHT, int MAPWIDTH);
 	int getxPos();
 	int getyPos();
 	bool drawPerson();

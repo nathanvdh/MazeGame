@@ -59,10 +59,14 @@ bool Person::move(Maze* maze, int aKey) {
 	return moved;
 }
 
-bool Person::setPos(int x, int y) {
-	xPos = x;
-	yPos = y;
-	return 1;
+bool Person::setPos(int x, int y, int MAPHEIGHT, int MAPWIDTH) {
+	if (x>0 && x < MAPWIDTH && y>0 && y<MAPHEIGHT) {
+		xPos = x;
+		yPos = y;
+		return 1;
+	} else {
+		return 0;
+	}
 }
 
 int Person::getxPos() {
@@ -74,7 +78,7 @@ int Person::getyPos() {
 
 bool Person::drawPerson() {
 	mvaddch(yPos,xPos,'@');
-	return 1;
+return 1;
 }
 
 void Person::promptName() {
