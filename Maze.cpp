@@ -1,6 +1,7 @@
 #include "Maze.h"
 #include "Obstacle.h"
 #include "Person.h"
+
 Maze::Maze(int height,int width) {
   mapHeight=height;
   mapWidth=width;
@@ -23,7 +24,7 @@ bool Maze::setMap(Obstacle*** aDynMap) {
 return 1;
 }
 
-bool Maze::drawMap(){
+bool Maze::drawMap(Person* person){
   
 
   int row,column;
@@ -35,6 +36,8 @@ bool Maze::drawMap(){
 
   mvprintw(mapHeight+1,0,"Reach the end zone (X) to complete the game");
   mvprintw(mapHeight+2,0,"Press q to quit game");
+  mvprintw(mapHeight+3,0,"Username: ");
+  mvprintw(mapHeight+3,10,person->getName().c_str());
 return 1;
 }
 

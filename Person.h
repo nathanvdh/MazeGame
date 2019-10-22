@@ -15,10 +15,13 @@ public:
 	int getxPos();
 	int getyPos();
 	bool drawPerson();
+	void promptName();
+	std::string getName();
 	~Person();
 
 private:
 	int xPos, yPos;
+	std::string name;
 
 };
 

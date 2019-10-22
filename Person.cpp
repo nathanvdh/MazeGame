@@ -1,5 +1,6 @@
 #include "Person.h"
 #include "Obstacle.h"
+#include <iostream>
 Person::Person() : Entity('+') {
 	xPos = 0;
 	yPos = 0;
@@ -75,6 +76,17 @@ bool Person::drawPerson() {
 	mvaddch(yPos,xPos,'@');
 	return 1;
 }
+
+void Person::promptName() {
+	std::cout << "Enter username: " << std::endl;
+	std::cin >> name;
+	//name = "Player: " + name;
+}
+
+std::string Person::getName() {
+	return name;
+}
+
 
 Person::~Person() {
 

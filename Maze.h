@@ -10,7 +10,7 @@ class Maze {
 public:
 	Maze(int height, int width);
 	bool setMap(Obstacle*** aDynMap);
-	bool drawMap();
+	bool drawMap(Person* person);
 	Obstacle*** getMap();
 	Obstacle* getNextObstacle(Person* person, int keyPress);
 	Obstacle* getCurrentObstacle(Person* person);

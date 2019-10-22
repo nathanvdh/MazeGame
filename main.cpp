@@ -24,19 +24,16 @@ int main(void)
 	person = new Person();
 
  	person->setPos(2,2);
+	
 	Obstacle*** myMap = Map1(MAPHEIGHT, MAPWIDTH, maze, person);
-	std::cout << "Enter user name: " << std::endl;
-	std::string name;
-	std::cin >> name;
-	name = "Player: " + name;
-	
-	
-	
 	maze->setMap(myMap);
+	
+	person->promptName();
+
 	initCurses();
-	maze->drawMap();
+	
+	maze->drawMap(person);
 	person->drawPerson();
-	mvprintw(MAPHEIGHT+4,0,name.c_str());
 	
 	int keyPress = '\0';
 
