@@ -14,7 +14,7 @@ public:
 	
 	~Entity();
 
-private:
+protected:
 	char sprite;
 	
 };

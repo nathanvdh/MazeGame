@@ -40,7 +40,7 @@ int main (void) {
 	Maze *maze;
 
 	obstacle = new Obstacle(inp, msg);
-
+	person = new Person();
 	
 	int keyPress;
 	switch (key) {
@@ -93,7 +93,7 @@ int main (void) {
 
 	cout << maze->setMap(Map) << endl;
 	cout << maze->getMapHeight() << " " << maze->getMapWidth() << endl;
-	//cout << maze->drawMap(person) << endl; //this requires curses
+	cout << maze->drawMap(person) << endl; //this requires curses
 	//getMap()
 
 	//person class testing
@@ -105,7 +105,7 @@ int main (void) {
 	cout << person->getxPos() << " " << person->getyPos() << endl;
 	//cout << maze->getNextObstacle(person, keyPress)[person->getyPos()][person->getxPos()]->getSprite() << endl;
 	cout << person->move(maze, keyPress) <<endl;
-	//cout << person->drawPerson() << endl; //this requires curses
+	cout << person->drawPerson() << endl; //this requires curses
 
 		//Hole class testing
 	cout<< "testing Hole class" << endl;
