@@ -12,6 +12,7 @@ bool Finish::touched(Maze* maze, Person* person, int keyPress) {
 	person->drawPerson();
 	//clear();
 	getch();
+	endwin();
 	exit(0);
 
 }
