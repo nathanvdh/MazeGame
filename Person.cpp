@@ -4,6 +4,7 @@
 Person::Person() : Entity('+') {
 	xPos = 0;
 	yPos = 0;
+	name = "";
 }
 //'move' function returns 1 if player was moved involuntarily (just like 'touched') 
 bool Person::move(Maze* maze, int aKey) {
@@ -59,8 +60,8 @@ bool Person::move(Maze* maze, int aKey) {
 	return moved;
 }
 
-bool Person::setPos(int x, int y, int MAPHEIGHT, int MAPWIDTH) {
-	if (x>0 && x < MAPWIDTH && y>0 && y<MAPHEIGHT) {
+bool Person::setPos(int x, int y, Maze* maze) {
+	if (x>0 && x < maze->getMapWidth() && y>0 && y<maze->getMapHeight()) {	//check the player isnt being moved out of bounds
 		xPos = x;
 		yPos = y;
 		return 1;
