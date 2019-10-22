@@ -58,7 +58,7 @@ int main (void) {
 			keyPress = 1;
 	}
 
-	cout << obstacle->touched(maze, person, keyPress) << keyPress << endl;
+	cout << obstacle->touched(maze, person, keyPress) << endl;
 
 		// Wall class testing
 	cout<< "testing Wall class" << endl;
@@ -70,7 +70,9 @@ int main (void) {
 	
 		//maze class testing
 	cout<< "testing maze class" << endl;
-	const int MAPHEIGHT = 5, MAPWIDTH = 5; 
+	int MAPHEIGHT, MAPWIDTH;
+	cin >> MAPHEIGHT;
+	cin >> MAPWIDTH;
 	Banana *banana;
 	Space *space;
 	banana = new Banana();
@@ -104,6 +106,8 @@ int main (void) {
  	}
 
 	cout << maze->setMap(Map) << endl;
+	cout << maze->getMapHeight() << endl;
+	cout << maze->getMapWidth() << endl;
 
 	//person class testing
 	cout<< "testing person class" << endl;
