@@ -12,28 +12,30 @@ Maze::Maze(int height,int width) {
 
 }
 
-void Maze::setMap(Obstacle*** aDynMap) {
+bool Maze::setMap(Obstacle*** aDynMap) {
 	int row, column;
   	
   	for (row=0; row < mapHeight; row++ ){
-    	for (column=0; column < mapWidth ;column++) {
-      		dynMap[row][column] = aDynMap[row][column];
-    	}
+    		for (column=0; column < mapWidth ;column++) {
+      			dynMap[row][column] = aDynMap[row][column];
+    		}
   	}
+return 1;
 }
 
-void Maze::drawMap(){
+bool Maze::drawMap(){
   
 
   int row,column;
   	for (row = 0; row < mapHeight; row++ ){
-    	for (column = 0; column < mapWidth; column++) {
-      		mvaddch(row, column, dynMap[row][column]->getSprite());	
-    	}
+    		for (column = 0; column < mapWidth; column++) {
+      			mvaddch(row, column, dynMap[row][column]->getSprite());	
+    		}
   	}
 
   mvprintw(mapHeight+1,0,"Reach the end zone (X) to complete the game");
   mvprintw(mapHeight+2,0,"Press q to quit game");
+return 1;
 }
 
 Obstacle*** Maze::getMap() {
