@@ -8,7 +8,6 @@ class Space : public Obstacle
 public:
 
 	Space();
-	virtual bool touched(Maze* maze, Person* person, int keyPress);
 	~Space();
 };
 

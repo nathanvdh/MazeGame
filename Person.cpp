@@ -1,31 +1,61 @@
 #include "Person.h"
-Person::Person() : Entity('@') {
+#include "Obstacle.h"
+Person::Person() : Entity('+') {
 	xPos = 0;
 	yPos = 0;
 }
+//'move' function returns 1 if player was moved involuntarily (just like 'touched') 
+bool Person::move(Maze* maze, int aKey) {
+	
+	bool moved = 0; //value to store whether player was moved involuntarily
 
-bool Person::move(int aKey, char trail) {
-	mvaddch(yPos, xPos, trail);
+	mvaddch(yPos, xPos, maze->getCurrentObstacle(this)->getSprite()); //restore the character in players previous position
+
+	//Determine the player's next position
+	int nextY = yPos;
+	int nextX = xPos;
+
 	switch (aKey) {
 		case KEY_UP:
-				yPos--;
-				return 1;
+				nextY--;
+				
 			break;
 		case KEY_DOWN:
-				yPos++;
-				return 1;
+				nextY++;
+				
 			break;
 		case KEY_LEFT:
-				xPos--;
-				return 1;
+				nextX--;
+				
 			break;
 		case KEY_RIGHT:
-				xPos++;
-				return 1;
+				nextX++;
+				
 			break;
 		default:
 			return 0;
+			
 	}
+
+	Obstacle* nextOb = maze->getNextObstacle(this, aKey);
+
+	if (!(nextOb->isWall()))												//if the next obstacle isn't a wall
+	{
+		yPos = nextY;														//update the player's position
+		xPos = nextX;
+		 if (maze->getCurrentObstacle(this)->touched(maze, this, aKey)) {	//touch whatever is there and test if it moved the player involuntarily
+		 	moved = 1; 														
+		 } else {
+		 	moved = 0;
+		 }
+	} else {
+		nextOb->touched(maze, this, aKey); //there is a wall in the way, call it's touched method without moving onto it.
+		moved = 0;
+	}
+
+	mvaddch(yPos,xPos,'@');
+
+	return moved;
 }
 
 void Person::setPos(int x, int y) {

@@ -28,18 +28,17 @@ int main(void)
 	maze->setMap(Map1(MAPHEIGHT, MAPWIDTH, maze, person));
 	initCurses();
 	maze->drawMap();
+	person->drawPerson();
 	
 	int keyPress = '\0';
-	//bool move;
-	//Obstacle*** map = maze.getMap();
+
 	while (keyPress !='q')
 	{
-		person->drawPerson();
 		keyPress = getch();
 		
 		if (keyPress == KEY_UP || keyPress == KEY_DOWN || keyPress == KEY_LEFT || keyPress == KEY_RIGHT )
 		{
-			maze->getNextObstacle(person, keyPress)->touched(maze, person, keyPress);
+			person->move(maze, keyPress);
 		}
 		
 	}
