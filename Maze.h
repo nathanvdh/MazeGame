@@ -9,8 +9,8 @@ class Obstacle;
 class Maze {
 public:
 	Maze(int height, int width);
-	void setMap(Obstacle*** aDynMap);
-	void drawMap();
+	bool setMap(Obstacle*** aDynMap);
+	bool drawMap();
 	Obstacle*** getMap();
 	Obstacle* getNextObstacle(Person* person, int keyPress);
 	Obstacle* getCurrentObstacle(Person* person);
