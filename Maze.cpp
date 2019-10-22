@@ -46,6 +46,10 @@ int Maze::getMapHeight() {
   return mapHeight;
 }
 
+int Maze::getMapWidth() {
+	return mapWidth;
+}
+
 Obstacle* Maze::getNextObstacle(Person* person, int keyPress) {
       switch (keyPress) {
       case KEY_UP :

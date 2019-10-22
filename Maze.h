@@ -15,6 +15,7 @@ public:
 	Obstacle* getNextObstacle(Person* person, int keyPress);
 	Obstacle* getCurrentObstacle(Person* person);
 	int getMapHeight();
+	int getMapWidth();
 	~Maze();
 	
 private:
