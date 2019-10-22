@@ -1,7 +1,6 @@
 #include "Maze.h"
 #include "Obstacle.h"
 #include "Person.h"
-
 Maze::Maze(int height,int width) {
   mapHeight=height;
   mapWidth=width;
@@ -14,17 +13,21 @@ Maze::Maze(int height,int width) {
 }
 
 bool Maze::setMap(Obstacle*** aDynMap) {
-	int row, column;
+	if (mapHeight >0 && mapWidth>0) {
+		int row, column;
   	
-  	for (row=0; row < mapHeight; row++ ){
-    		for (column=0; column < mapWidth ;column++) {
-      			dynMap[row][column] = aDynMap[row][column];
-    		}
-  	}
-return 1;
+  		for (row=0; row < mapHeight; row++ ){
+    			for (column=0; column < mapWidth ;column++) {
+      				dynMap[row][column] = aDynMap[row][column];
+    			}
+  		}
+		return 1;
+	} else {
+		return 0;
+	}
 }
 
-bool Maze::drawMap(Person* person){
+bool Maze::drawMap(){
   
 
   int row,column;
@@ -36,8 +39,6 @@ bool Maze::drawMap(Person* person){
 
   mvprintw(mapHeight+1,0,"Reach the end zone (X) to complete the game");
   mvprintw(mapHeight+2,0,"Press q to quit game");
-  mvprintw(mapHeight+3,0,"Username: ");
-  mvprintw(mapHeight+3,10,person->getName().c_str());
 return 1;
 }
 
