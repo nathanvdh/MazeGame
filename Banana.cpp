@@ -16,10 +16,7 @@ bool Banana::touched(Maze* maze, Person* person, int keyPress) {
 		 }
 		nextOb = maze->getNextObstacle(person, keyPress); 	//get the next obstacle relative to the new position
 	}
-
 	
-
-
 	Obstacle::touched(maze, person, keyPress);
 	return 1; //person was moved involuntarily so touched returns 1
 }
