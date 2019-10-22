@@ -59,9 +59,9 @@ bool Person::move(Maze* maze, int aKey) {
 }
 
 bool Person::setPos(int x, int y) {
-
 	xPos = x;
 	yPos = y;
+	return 1;
 }
 
 int Person::getxPos() {
@@ -73,6 +73,7 @@ int Person::getyPos() {
 
 bool Person::drawPerson() {
 	mvaddch(yPos,xPos,'@');
+	return 1;
 }
 
 Person::~Person() {
