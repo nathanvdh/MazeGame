@@ -15,7 +15,8 @@ using namespace std;
 
 int main (void) {
 
-		//testing Entity class
+		//Entity class testing
+	cout<< "testing Entity class" << endl;
 	char inp;
 	cin >> inp;
 	
@@ -25,7 +26,8 @@ int main (void) {
 	cout << entity->getSprite() << endl;
 
 
-		//testing Obstacle class
+		//Obstacle class testing
+	cout<< "testing Obstacle class" << endl;
 	string msg;
 	cin >> msg;
 	char key;
@@ -36,11 +38,12 @@ int main (void) {
 	Maze *maze;
 
 	obstacle = new Obstacle(inp, msg);
-	
+
+
 	int keyPress;
 	switch (key) {
 		case 'l':
-			keyPress = KEY_LEFT;
+			keyPress = KEY_RIGHT;
 			break;
 		case 'r':
 			keyPress = KEY_RIGHT;
@@ -55,23 +58,25 @@ int main (void) {
 			keyPress = 1;
 	}
 
-	cout << obstacle->touched(maze, person, keyPress) << endl;
+	cout << obstacle->touched(maze, person, keyPress) << keyPress << endl;
 
-		//testing Wall class
+		// Wall class testing
+	cout<< "testing Wall class" << endl;
 	Wall *wall;
 	wall = new Wall();
 	cout << wall->isWall() << endl;
 
 		//testing Finish class
 	
-
-		//testing Banana class
+		//maze class testing
+	cout<< "testing maze class" << endl;
 	const int MAPHEIGHT = 5, MAPWIDTH = 5; 
 	Banana *banana;
 	Space *space;
 	banana = new Banana();
 	space = new Space();
-	
+	maze = new Maze(MAPHEIGHT, MAPWIDTH);
+
 	std::string textMap[MAPHEIGHT] = { 
 
 		"#####",
@@ -82,9 +87,7 @@ int main (void) {
 	};
 	
 	char currentChar= textMap[0].at(0);
-	
 	Obstacle*** Map = new Obstacle**[MAPHEIGHT];
-	
 	for (int i = 0; i < MAPHEIGHT; ++i) {
     		Map[i] = new Obstacle*[MAPWIDTH];
     		for (int j = 0; j < MAPWIDTH; ++j) {
@@ -99,24 +102,31 @@ int main (void) {
 				}
     		}
  	}
-	person->setPos(2, 2, MAPHEIGHT, MAPWIDTH);
-	
-	maze->setMap(Map);
-	cout << banana->touched(maze, person, keyPress) << endl;
 
-	//testing Hole class
+	cout << maze->setMap(Map) << endl;
+
+	//person class testing
+	cout<< "testing person class" << endl;
+	int xPos, yPos;
+	cin >> xPos;
+	cin >> yPos;	
+	cout << person->setPos(xPos, yPos, MAPHEIGHT, MAPWIDTH) <<endl;
+	cout << person->getxPos() << " " << person->getyPos() << endl;
+
+		//Hole class testing
+	cout<< "testing Hole class" << endl;
 	Hole *hole;
 	hole = new Hole();
 	cout << hole->touched(maze, person, keyPress) << endl;
 
+		// Banana class testing
+	cout<< "testing Banana class" << endl;
+	cout << banana->touched(maze, person, keyPress) << endl;
+
+
 	//testing space
 	
-	//testing person
-	int xPos, yPos;
-	cin >> xPos;
-	cin >> yPos;
-	cout << person->setPos(xPos, yPos, MAPHEIGHT, MAPWIDTH) <<endl;
-	cout << person->getxPos() << " " << person->getyPos() << endl;
+	
 
 	//draw person change to bool function
 	
