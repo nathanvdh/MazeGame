@@ -5,7 +5,7 @@
 #include "Person.h"
 #include "Hole.h"
 #include "Banana.h"
-
+#include <string>
 Obstacle*** Map1(int MAPHEIGHT, int MAPWIDTH, Maze *maze, Person *person) {
 //creates the map
 
@@ -21,29 +21,53 @@ Obstacle*** Map1(int MAPHEIGHT, int MAPWIDTH, Maze *maze, Person *person) {
 	hole = new Hole();
 	banana = new Banana();
 
+
+	std::string textMap[MAPHEIGHT] = { 
+
+		"#########################",
+		"#                       #",
+		"#                       #",
+		"#                       #",
+		"#                       #",
+		"#  (        O           #",
+		"#                       #",
+		"#                    (  #",
+		"#                       #",
+		"#                       #",
+		"#                    O  #",
+		"#                   OXO #",
+		"#  O                    #",
+		"#                       #",
+		"#########################",
+	};
+	
+	char currentChar= textMap[0].at(0);
+	
 	Obstacle*** myMap = new Obstacle**[MAPHEIGHT];
+	
 	for (int i = 0; i < MAPHEIGHT; ++i) {
 
     		myMap[i] = new Obstacle*[MAPWIDTH];
+    		
     		for (int j = 0; j < MAPWIDTH; ++j) {
-    			if (i == 0 || i == MAPHEIGHT-1 || j == 0 || j== MAPWIDTH-1) {
-    				myMap[i][j] = wall;
-    			} 
+    			currentChar= textMap[i].at(j);
 
-    			else if (i == 10 && j == 10) {
-    				myMap[i][j] = finish;
-    			}
-	
-    			else if ((i== 9 && j==10) || (i==9 && j==11) || (i==10 && j==11) || (i==11 && j==11) || (i==11 && j==10) ) {
-    				myMap[i][j] = hole;
-    			}
-
-    			else if ((i==9 && j==8) || (i == 9 && j == 4)) {
-    				myMap[i][j] = banana;
-    			}
-
-    			else {
-    				myMap[i][j] = space;	
+    			switch (currentChar) {
+    				case '#':
+    					myMap[i][j] = wall;
+    					break;
+    				case ' ':
+    					myMap[i][j] = space;
+    					break;
+    				case 'O':
+    					myMap[i][j] = hole;
+    					break;
+    				case '(':
+    					myMap[i][j] = banana;
+    					break;
+    				case 'X': 
+    					myMap[i][j] = finish;
+    					break;
     			}
     		
     		}

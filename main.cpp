@@ -29,8 +29,10 @@ int main(void)
 	std::string name;
 	std::cin >> name;
 	name = "Player: " + name;
-
-	maze->setMap(Map1(MAPHEIGHT, MAPWIDTH, maze, person));
+	
+	Obstacle*** myMap = Map1(MAPHEIGHT, MAPWIDTH, maze, person);
+	
+	maze->setMap(myMap);
 	initCurses();
 	maze->drawMap();
 	person->drawPerson();
