@@ -9,6 +9,7 @@
 #include "Hole.h"
 #include "Wall.h"
 #include "Space.h"
+#include "Finish.h"
 
 
 using namespace std;
@@ -39,7 +40,7 @@ int main (void) {
 
 	obstacle = new Obstacle(inp, msg);
 
-
+	
 	int keyPress;
 	switch (key) {
 		case 'l':
@@ -66,8 +67,6 @@ int main (void) {
 	wall = new Wall();
 	cout << wall->isWall() << endl;
 
-		//testing Finish class
-	
 		//maze class testing
 	cout<< "testing maze class" << endl;
 	int MAPHEIGHT, MAPWIDTH;
@@ -113,17 +112,16 @@ int main (void) {
 	hole = new Hole();
 	cout << hole->touched(maze, person, keyPress) << endl;
 
+	//testing Finish class
+	Finish *finish;
+	finish = new Finish();
+	cout << finish->touched(maze, person, keyPress) << endl;
+
 		// Banana class testing
 	cout<< "testing Banana class" << endl;
 	cout << banana->touched(maze, person, keyPress) << endl;
 
-
-	//testing space
-	
-	
-
-	//draw person change to bool function
-	
+	//testing space	
 
 
 
