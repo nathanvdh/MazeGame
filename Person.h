@@ -11,10 +11,10 @@ class Person : public Entity
 public:
 	Person();
 	bool move(Maze* maze, int aKey);
-	void setPos(int x, int y);
+	bool setPos(int x, int y);
 	int getxPos();
 	int getyPos();
-	void drawPerson();
+	bool drawPerson();
 	~Person();
 
 private:
