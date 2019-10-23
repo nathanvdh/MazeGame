@@ -15,7 +15,7 @@ public:
 	int getxPos();
 	int getyPos();
 	bool drawPerson();
-	void promptName();
+	void setName(std::string aName);
 	std::string getName();
 	~Person();
 

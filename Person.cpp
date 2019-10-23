@@ -83,7 +83,7 @@ return 1;
 }
 
 void Person::setName(std::string aName) {
-	name= aName
+	name= aName;
 }
 
 std::string Person::getName() {
