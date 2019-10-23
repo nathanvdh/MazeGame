@@ -2,14 +2,18 @@
 #include "Obstacle.h"
 #include "Person.h"
 Maze::Maze(int height,int width) {
-  mapHeight=height;
-  mapWidth=width;
-  dynMap = new Obstacle**[mapHeight];
-  for (int i = 0; i < mapHeight; ++i)
-  {
-    dynMap[i] = new Obstacle*[mapWidth];
+  if (height >0 && width>0) {
+    mapHeight=height;
+    mapWidth=width;
+    dynMap = new Obstacle**[mapHeight];
+    for (int i = 0; i < mapHeight; ++i)
+      {
+        dynMap[i] = new Obstacle*[mapWidth];
+      }
+  } else {
+    mapHeight=0;
+    mapWidth=0;
   }
-
 }
 
 bool Maze::setMap(Obstacle*** aDynMap) {
@@ -28,8 +32,10 @@ bool Maze::setMap(Obstacle*** aDynMap) {
 }
 
 bool Maze::drawMap(Person* person){
-  
-
+  if (mapHeight < 1 || mapWidth < 1)
+  {
+    return 0;
+  }
   int row,column;
   	for (row = 0; row < mapHeight; row++ ){
     		for (column = 0; column < mapWidth; column++) {
@@ -81,11 +87,12 @@ Obstacle* Maze::getCurrentObstacle(Person* person) {
 
 
 Maze::~Maze() {
-  for (int i = 0; i < mapHeight; ++i)
-  {
-    delete[] dynMap[i];
+  if (mapHeight > 0 ) {
+    for (int i = 0; i < mapHeight; ++i)
+      {
+        delete[] dynMap[i];
+      }
+
+    delete[] dynMap;
   }
-
-  delete[] dynMap;
-
 }
