@@ -23,7 +23,7 @@ Obstacle*** Map1(int MAPHEIGHT, int MAPWIDTH, Maze *maze, Person *person) {
 	banana = new Banana();
 
 	//Please don't judge my maze creation skills
-	std::string textMap[MAPHEIGHT] = { //creates an easily editable and readable map
+	std::string textMap[15] = { //creates an easily editable and readable map
 
 		"#########################",
 		"#         #             #",

@@ -16,7 +16,7 @@ using namespace std;
 
 int main (void) {
 
-		//Entity class testing
+	//Entity class testing
 	cout << endl;
 	cout<< "testing Entity class" << endl;
 	Entity *entity;
@@ -24,6 +24,7 @@ int main (void) {
 	
 	char inp = '#';
 
+				//compares get sprite to value passed to set sprite
 	entity->setSprite(inp);
 	if (entity->getSprite() == inp) {
 		cout << "success: setSprite \n";
@@ -31,12 +32,16 @@ int main (void) {
 		cout << "fail: setSprite \n";
 	}
 
+
+
 	
-			// Wall class testing
+	// Wall class testing
 	cout << endl;
 	cout<< "testing Wall class" << endl;
 	Wall *wall;
 	wall = new Wall();
+
+				//checks that the isWall function can correctly identify a wall
 	if (wall->isWall()) {
 		cout << "success: wall is wall\n";
 	} else {
@@ -44,29 +49,29 @@ int main (void) {
 	}
 
 
+
+
+	//maze class testing
 	Person *person;
 	Maze *maze;
+	Space *space;
+
+	int MAPHEIGHT=10, MAPWIDTH=10;
 	person = new Person();
+	maze = new Maze(MAPHEIGHT, MAPWIDTH);
+	space = new Space();
 
-
-		//maze class testing
 	cout << endl;
 	cout<< "testing maze class" << endl;
 
-	int MAPHEIGHT=10, MAPWIDTH=10;
-	//cin >> MAPHEIGHT;
-	//cin >> MAPWIDTH;
-
-	Space *space;
-	space = new Space();
-	maze = new Maze(MAPHEIGHT, MAPWIDTH);
-	
+				//Checks that the getMapHeight and getMapWidth functions return the values
+				//set to the maze constructor
 	if (maze->getMapHeight() == MAPHEIGHT && maze->getMapWidth() == MAPWIDTH) {
 		cout << "success: map dimensions match\n";
 	} else {
 		cout << "fail: map dimensions don't match\n";
 	}
-
+				//creates a map
 	Obstacle*** Map = new Obstacle**[MAPHEIGHT];
 	for (int i = 0; i < MAPHEIGHT; ++i) {
     		Map[i] = new Obstacle*[MAPWIDTH];
@@ -79,6 +84,7 @@ int main (void) {
     		}
  	}
 
+ 				//checks that the getMap function returns the expected map
 	maze->setMap(Map);
 	bool mapCheck = 0;
 	for (int i = 0; i < MAPHEIGHT; ++i) {
@@ -104,14 +110,15 @@ int main (void) {
   		}
   	delete[] Map;
 
+  				//checks if the drawMap function is successful
 	if (maze->drawMap(person)) {
 		cout << "success: map is drawn successfully\n";
 	} else {
 		cout << "fail: map was not drawn\n";
 	}
 
+				//checks the getCurrentObstacle returns the correct obstacle that the person is on
 	person->setPos(2,2, maze);
-
 	if (maze->getCurrentObstacle(person)==space)
 	{
 		cout << "success: getCurrentObstacle\n";
@@ -119,6 +126,7 @@ int main (void) {
 		cout << "fail: getCurrentObstacle\n";
 	}
 
+				//checks the getNextObstacle returns the correct obstacle surrounding the person in all directions
 	if (maze->getNextObstacle(person,KEY_RIGHT)==space && maze->getNextObstacle(person,KEY_LEFT)==space && maze->getNextObstacle(person,KEY_UP)==space && maze->getNextObstacle(person,KEY_DOWN)==space)
 	{
 		cout << "success: getNextObstacle\n";
@@ -126,7 +134,7 @@ int main (void) {
 		cout << "fail: getNextObstacle\n";
 	}
 
-	//test creating an invalid map
+				//test creating an invalid map with negative dimensions
 	Maze* negMaze = new Maze(-5,-4);
 	if (negMaze->getMapWidth() == 0 && negMaze->getMapHeight()==0)
 	{
@@ -136,7 +144,7 @@ int main (void) {
 	}
 
 	
-	
+				//test creating an invalid map with zero dimensions
 	Maze* zeroMaze = new Maze(0,0);
 
 	if (zeroMaze->getMapWidth() == 0 && zeroMaze->getMapHeight()==0)
@@ -151,26 +159,24 @@ int main (void) {
 
 
 
-	//person class testing
+
+	//Person class testing
 	cout << endl;
 	cout<< "testing person class" << endl;
-	int xPos, yPos;
-	//cin >> xPos;
-	//cin >> yPos;	
-	xPos = 3;
-	yPos =3;
+	int xPos=3, yPos=3;
+
+				//compares the getxPos and getyPos values to the inputted setPos values
 	person->setPos(xPos, yPos, maze);
 	if (person->getxPos()== xPos && person->getyPos()== yPos) {
 		cout << "success: setPos\n";
 	} else {
 		cout << "fail: setPos\n";
 	}
-	
-	string name = "myName";
-	//cin >> name;
-	
-	person->setName(name);
 
+				//checks that the string returned from getName is the string that was passed to
+				//setName
+	string name = "myName";	
+	person->setName(name);
 	if (person->getName() == name)
 	{
 		cout << "success: setName\n";
@@ -178,6 +184,7 @@ int main (void) {
 		cout << "fail: setName\n";
 	}
 
+				//Checks if the person object can move in all four directions over a space
 	person->move(maze, KEY_RIGHT);
 	if (person->getxPos() == xPos++ && person->getyPos() == yPos)
 	{
@@ -202,6 +209,7 @@ int main (void) {
 		cout << "success: person move (down)\n";
 	}
 
+				//checks that the person object does not move into a wall
 	person->setPos(1,1, maze);
 	person->move(maze, KEY_UP);
 	if (person->getxPos() == 1 && person->getyPos() == 1)
@@ -210,26 +218,26 @@ int main (void) {
 	} else {
 		cout << "fail: person moved when wall should block them";
 	}
-	
+
+				//checks that the drawPerson function is sucessful	
 	if (person->drawPerson()) {
 		cout << "success: drawPerson";
 	} else {
 		cout << "fail: drawPerson";
 	}
 
-		//Obstacle class testing
+
+
+
+	//Obstacle class testing
 	cout << endl;
-	cout<< "testing Obstacle class" << endl;
-	//string msg;
-	//cin >> msg;
+	cout<< "\ntesting Obstacle class" << endl;
 
 	Obstacle *obstacle;
-
-
 	obstacle = new Obstacle(inp, "message");
 
-	
-
+				//checks that an obstacle can identify when a person is moved on to it from
+				//all four directions
 	if (obstacle->touched(maze, person, KEY_LEFT)==0 && obstacle->touched(maze, person, KEY_RIGHT)==0 && obstacle->touched(maze, person, KEY_UP)==0 && obstacle->touched(maze, person, KEY_DOWN) ==0) {
 		cout << "obstacle touched: success\n";
 	} else {
@@ -239,57 +247,44 @@ int main (void) {
 
 
 
-		// Banana class testing
+	// Banana class testing
 	cout << endl;
 	cout<< "testing Banana class" << endl;
+	
 	Banana *banana;
 	banana = new Banana();
 	
 	Map[1][2] = banana;
-
 	maze->setMap(Map);
-
 	person->move(maze, KEY_RIGHT);
 
+				//checks that a banana moves a person to the expected position
 	if (person->getxPos() == 8 && person->getyPos() == 1) {
 		cout << "success: banana moved player to expected position";
 	} else {
 		cout << "fail: banana did not move player to expected position";
 	}
 
-		
-		//Hole class testing
+	
+
+
+	//Hole class testing
 	cout << endl;
-	cout<< "testing Hole class" << endl;
+	cout<< "\ntesting Hole class" << endl;
 	Hole *hole;
 	hole = new Hole();
-	//cout << hole->touched(maze, person, KEY_LEFT) << endl;
 
 	Map[2][8] = hole;
-
 	maze->setMap(Map);
-
 	person->move(maze, KEY_DOWN);
 
+				//checks that a hole moves a person to the expected position
 	if (person->getxPos() == 2 && person->getyPos() == 2)
 	{
 		cout << "success: Hole moved player to 2,2\n";
 	} else {
 		cout << "fail: Hole did not move player to 2,2\n";
 	}
-
-
-	/*
-	//testing Finish class
-	cout << endl;
-	cout << "testing Finish class" << endl;
-	Finish *finish;
-	finish = new Finish();
-	//cout << finish->touched(maze, person, keyPress) << endl; //Finish::touched calls exit(0)
-
-	//testing space	
-	*/
-
 
 return 0;
 }

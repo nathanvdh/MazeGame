@@ -39,7 +39,8 @@ int main(void)
 	//set starting position of player and ask for username
 	person->setPos(2, 2, maze);
 	std::string name;
-	cin >> name;
+	std::cout << "Enter player name: " << std::endl;
+	std::cin >> name;
 	person->setName(name);
 
 	initCurses();

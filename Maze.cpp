@@ -1,8 +1,11 @@
 #include "Maze.h"
 #include "Obstacle.h"
 #include "Person.h"
+
+//If map height and width are greater than zero, allocates memory for 2D map
+//else, returns dimensionless map
 Maze::Maze(int height,int width) {
-  if (height >0 && width>0) {
+  if (height >0 && width>0) {   
     mapHeight=height;
     mapWidth=width;
     dynMap = new Obstacle**[mapHeight];
@@ -10,12 +13,13 @@ Maze::Maze(int height,int width) {
       {
         dynMap[i] = new Obstacle*[mapWidth];
       }
-  } else {
+  } else {                    
     mapHeight=0;
     mapWidth=0;
   }
 }
 
+//sets the maze to the inputted map
 bool Maze::setMap(Obstacle*** aDynMap) {
 	if (mapHeight >0 && mapWidth>0) {
 		int row, column;
@@ -31,6 +35,7 @@ bool Maze::setMap(Obstacle*** aDynMap) {
 	}
 }
 
+//draws the map using curses
 bool Maze::drawMap(Person* person){
   if (mapHeight < 1 || mapWidth < 1)
   {
@@ -62,6 +67,7 @@ int Maze::getMapWidth() {
 	return mapWidth;
 }
 
+//returns the obstacle next to a person object in the direction of keyPress
 Obstacle* Maze::getNextObstacle(Person* person, int keyPress) {
       switch (keyPress) {
       case KEY_UP :
