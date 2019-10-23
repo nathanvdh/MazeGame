@@ -56,9 +56,9 @@ int main (void) {
 	Maze *maze;
 	Space *space;
 
-	int MAPHEIGHT=10, MAPWIDTH=10;
+	int MAPHEIGHT=10, MAPWIDTH=10, STARTYPOS=2, STARTXPOS=2;
 	person = new Person();
-	maze = new Maze(MAPHEIGHT, MAPWIDTH);
+	maze = new Maze(MAPHEIGHT, MAPWIDTH, STARTYPOS, STARTXPOS);
 	space = new Space();
 
 	cout << endl;
@@ -134,8 +134,20 @@ int main (void) {
 		cout << "fail: getNextObstacle\n";
 	}
 
+	//check the getStartY and getStartX functions
+	if (maze->getStartY() == STARTYPOS && maze->getStartX() == STARTXPOS)
+	{
+		cout << "success: start position is correct\n";
+	}	else {
+		cout << "fail: start position does not match\n";
+	}
+
+
+
+
+
 				//test creating an invalid map with negative dimensions
-	Maze* negMaze = new Maze(-5,-4);
+	Maze* negMaze = new Maze(-5,-4,2,2);
 	if (negMaze->getMapWidth() == 0 && negMaze->getMapHeight()==0)
 	{
 		cout << "success: map with negative dimensions is not created\n";
@@ -145,7 +157,7 @@ int main (void) {
 
 	
 				//test creating an invalid map with zero dimensions
-	Maze* zeroMaze = new Maze(0,0);
+	Maze* zeroMaze = new Maze(0,0,2,2);
 
 	if (zeroMaze->getMapWidth() == 0 && zeroMaze->getMapHeight()==0)
 	{
