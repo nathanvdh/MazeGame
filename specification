@@ -1,0 +1,29 @@
+Design Specification:
+
+-Maze game using ncurses
+-Maze will be a class of an array of objects in which each object has a different behaviour when the player is at that locaiton
+-Classes in the map array to include:
+	-wall (prevents player from exiting boundaries)
+	-Space (allows player to move through)
+	-Banana (pushes the player towards the next wall in the direction they approached the banana)
+	-Hole (sends player back to start position)
+	-Finish (Quits game)
+-Game to consist of a player class with movement behaviour
+-Main function will be a while loop that continues until when a q is input
+-Player will be moved by taking in arrow keys and updating map
+-When player moves into different obstacles, a message will be outputted on the screen
+
+Classes hierachy:
+-Entity: has a sprite attribute
+	-Player: will be a subclass and has movement behaviour, location attributes, and takes in name (string) input
+	-Maze: will be a subclass and construct an object array
+	-Obstacle: will be a subclass and have a virtual behaviour when the player goes on that obstacle. 
+			-wall
+			-space
+			-banana
+			-hole
+			-finish
+
+-Obstacles will inherit from obstacle class and entity
+-Player will inherit from entity
+-maze will inherit from entity
