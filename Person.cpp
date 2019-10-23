@@ -82,10 +82,8 @@ bool Person::drawPerson() {
 return 1;
 }
 
-void Person::promptName() {
-	std::cout << "Enter username: " << std::endl;
-	std::cin >> name;
-	//name = "Player: " + name;
+void Person::setName(std::string aName) {
+	name= aName
 }
 
 std::string Person::getName() {
