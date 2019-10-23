@@ -10,7 +10,7 @@ class Person : public Entity
 {
 public:
 	Person();
-	bool move(Maze* maze, int aKey);
+	int move(Maze* maze, int aKey);
 	bool setPos(int x, int y, Maze* maze);
 	int getxPos();
 	int getyPos();

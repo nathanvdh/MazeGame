@@ -8,7 +8,7 @@ class Banana : public Obstacle
 public:
 
 	Banana();
-	virtual bool touched(Maze* maze, Person* person, int keyPress);
+	virtual int touched(Maze* maze, Person* person, int keyPress);
 	~Banana();
 };
 

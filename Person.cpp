@@ -7,9 +7,9 @@ Person::Person() : Entity('+') {
 	name = "";
 }
 //'move' function returns 1 if player was moved involuntarily (just like 'touched') 
-bool Person::move(Maze* maze, int aKey) {
+int Person::move(Maze* maze, int aKey) {
 	
-	bool moved = 0; //value to store whether player was moved involuntarily
+	int moved = 0; //value to store whether player was moved involuntarily
 
 	mvaddch(yPos, xPos, maze->getCurrentObstacle(this)->getSprite()); //restore the character in players previous position
 
@@ -45,11 +45,7 @@ bool Person::move(Maze* maze, int aKey) {
 	{
 		yPos = nextY;														//update the player's position
 		xPos = nextX;
-		 if (maze->getCurrentObstacle(this)->touched(maze, this, aKey)) {	//touch whatever is there and test if it moved the player involuntarily
-		 	moved = 1; 														
-		 } else {
-		 	moved = 0;
-		 }
+		 moved = maze->getCurrentObstacle(this)->touched(maze, this, aKey);	//touch whatever is there and test if it moved the player involuntarily
 	} else {
 		nextOb->touched(maze, this, aKey); //there is a wall in the way, call it's touched method without moving onto it.
 		moved = 0;

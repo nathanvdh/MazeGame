@@ -14,7 +14,7 @@ class Obstacle : public Entity
 public:
 
 	Obstacle(char aSprite, std::string aMessage);
-	virtual bool touched(Maze* maze, Person* person, int keyPress); 	//touched() returns 1 if the player can move onto the obstacle 
+	virtual int touched(Maze* maze, Person* person, int keyPress); 	//touched() returns 1 if the player can move onto the obstacle 
 																		//&& runs any code to be executed when you 'hit' the object
 	virtual bool isWall();
 	~Obstacle();		

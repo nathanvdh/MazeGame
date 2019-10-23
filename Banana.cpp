@@ -7,7 +7,7 @@ Banana::Banana() : Obstacle('(', "You slipped on a banana                       
 
 }
 
-bool Banana::touched(Maze* maze, Person* person, int keyPress) {
+int Banana::touched(Maze* maze, Person* person, int keyPress) {
 	
 	Obstacle* nextOb = maze->getNextObstacle(person, keyPress);
 	while (!(nextOb->isWall())) {

@@ -8,7 +8,7 @@ class Hole : public Obstacle
 public:
 
 	Hole();
-	virtual bool touched(Maze* maze, Person* person, int keyPress);
+	virtual int touched(Maze* maze, Person* person, int keyPress);
 	~Hole();
 };
 

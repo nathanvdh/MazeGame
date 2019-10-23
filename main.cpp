@@ -60,7 +60,9 @@ int main(void)
 		
 		if (keyPress == KEY_UP || keyPress == KEY_DOWN || keyPress == KEY_LEFT || keyPress == KEY_RIGHT )
 		{
-			person->move(maze, keyPress);
+			if (person->move(maze, keyPress) == 2) {
+				keyPress = 'q';
+			}
 		}
 		
 	}

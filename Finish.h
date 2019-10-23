@@ -8,7 +8,7 @@ class Finish : public Obstacle
 public:
 
 	Finish();
-	virtual bool touched(Maze* maze, Person* person, int keyPress);
+	virtual int touched(Maze* maze, Person* person, int keyPress);
 	~Finish();
 
 };

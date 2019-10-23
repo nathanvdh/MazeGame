@@ -6,7 +6,7 @@ Hole::Hole() : Obstacle('O', "You fell in a hole                      ") {
 
 }
 
-bool Hole::touched(Maze* maze, Person* person, int keyPress) {
+int Hole::touched(Maze* maze, Person* person, int keyPress) {
 	person->setPos(maze->getStartX(),maze->getStartY(), maze); //returns player to position 2,2
 	Obstacle::touched(maze, person, keyPress);
 	
