@@ -7,20 +7,7 @@
 #include "Banana.h"
 #include <string>
 //creates the map
-Obstacle*** Map1(int MAPHEIGHT, int MAPWIDTH, Maze *maze, Person *person) {
-	
-
-	Wall *wall;
-	Finish *finish;
-	Space *space;
-	Hole *hole;
-	Banana *banana;
-
-	wall = new Wall();
-	finish = new Finish();
-	space = new Space();
-	hole = new Hole();
-	banana = new Banana();
+Obstacle*** Map1(int MAPHEIGHT, int MAPWIDTH, Maze *maze, Person *person, Wall *wall, Finish *finish, Space *space, Hole *hole, Banana *banana) {
 
 	//Please don't judge my maze creation skills
 	std::string textMap[15] = { //creates an easily editable and readable map

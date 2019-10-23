@@ -10,7 +10,7 @@
 #include <curses.h>
 
 void initCurses();
-extern Obstacle*** Map1(int MAPHEIGHT, int MAPWIDTH, Maze *maze, Person *person);
+extern Obstacle*** Map1(int MAPHEIGHT, int MAPWIDTH, Maze *maze, Person *person, Wall *wall, Finish *finish, Space *space, Hole *hole, Banana *banana);
 
 int main(void)
 {	
@@ -21,13 +21,22 @@ int main(void)
 	
 	Maze *maze;
 	Person *person;
-	
+	Wall *wall;
+	Finish *finish;
+	Space *space;
+	Hole *hole;
+	Banana *banana;
+
 	maze = new Maze(MAPHEIGHT, MAPWIDTH, STARTYPOS, STARTXPOS);
 	person = new Person();
-
+	wall = new Wall();
+	finish = new Finish();
+	space = new Space();
+	hole = new Hole();
+	banana = new Banana();
  	
 	//Create and set map in maze
-	Obstacle*** myMap = Map1(MAPHEIGHT, MAPWIDTH, maze, person);
+	Obstacle*** myMap = Map1(MAPHEIGHT, MAPWIDTH, maze, person, wall, finish, space, hole, banana);
 	maze->setMap(myMap);
 	
 	//delete unneeded myMap
@@ -66,6 +75,14 @@ int main(void)
 		}
 		
 	}
+
+	delete maze;
+	delete person;
+	delete wall;
+	delete finish;
+	delete space;
+	delete hole;
+	delete banana;
   	
   	endwin();
 	return 0;
