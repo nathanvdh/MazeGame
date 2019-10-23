@@ -4,10 +4,12 @@
 
 //If map height and width are greater than zero, allocates memory for 2D map
 //else, returns dimensionless map
-Maze::Maze(int height,int width) {
-  if (height >0 && width>0) {   
+Maze::Maze(int height,int width, int astartY, int astartX) {
+  if (height >0 && width>0 && astartY > 0 && astartX >0) {   
     mapHeight=height;
     mapWidth=width;
+    startX = astartX;
+    startY = astartY;
     dynMap = new Obstacle**[mapHeight];
     for (int i = 0; i < mapHeight; ++i)
       {
@@ -91,6 +93,13 @@ Obstacle* Maze::getCurrentObstacle(Person* person) {
   return dynMap[person->getyPos()][person->getxPos()];
 }
 
+int Maze::getStartY() {
+  return startY;
+}
+
+int Maze::getStartX() {
+  return startX;
+}
 
 Maze::~Maze() {
   if (mapHeight > 0 ) {

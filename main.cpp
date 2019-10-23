@@ -15,12 +15,14 @@ extern Obstacle*** Map1(int MAPHEIGHT, int MAPWIDTH, Maze *maze, Person *person)
 int main(void)
 {	
 	const int MAPHEIGHT = 15,
-			  MAPWIDTH = 25;
+			  MAPWIDTH = 25,
+			  STARTYPOS = 2,
+			  STARTXPOS = 1;
 	
 	Maze *maze;
 	Person *person;
 	
-	maze = new Maze(MAPHEIGHT, MAPWIDTH);
+	maze = new Maze(MAPHEIGHT, MAPWIDTH, STARTYPOS, STARTXPOS);
 	person = new Person();
 
  	
@@ -37,7 +39,7 @@ int main(void)
   	delete[] myMap;
 	
 	//set starting position of player and ask for username
-	person->setPos(2, 2, maze);
+	person->setPos(maze->getStartX(), maze->getStartY(), maze);
 	std::string name;
 	std::cout << "Enter player name: " << std::endl;
 	std::cin >> name;

@@ -8,7 +8,7 @@ class Obstacle;
 
 class Maze {
 public:
-	Maze(int height, int width);
+	Maze(int height, int width, int astartY, int astartX);
 	bool setMap(Obstacle*** aDynMap);
 	bool drawMap(Person* person);
 	Obstacle*** getMap();
@@ -16,11 +16,15 @@ public:
 	Obstacle* getCurrentObstacle(Person* person);
 	int getMapHeight();
 	int getMapWidth();
+	int getStartY();
+	int getStartX();
 	~Maze();
 	
 private:
 	int mapWidth;
 	int mapHeight;
+	int startX;
+	int startY;
 
 	Obstacle*** dynMap;
 };
